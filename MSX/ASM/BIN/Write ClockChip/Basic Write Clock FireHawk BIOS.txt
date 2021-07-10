@@ -1,0 +1,10 @@
+10 'FireHawk Savegame in Real Time Clock
+20 '
+30 CLS:KEYOFF:AD=&HC000:DEFUSR=AD
+40 READA$:IFA$<>"*"THENPOKEAD,VAL("&h"+A$):AD=AD+1:GOTO40
+50 CLS:PRINT"Enter Level Nr (1-9)";
+60 A=VAL(INKEY$):IFA=0THENGOTO60ELSEPOKE&HC01D,A:PRINTA:A=USR(0)
+70 '-------------------------------------------------
+80 DATA F3,06,07,21,17,C0,3E,10,B0,4F,0C,7E,DD,21,F9
+90 DATA 01,CD,5F,01,23,10,F0,C9,00,0E,01,03,0C,05,09,*
+
