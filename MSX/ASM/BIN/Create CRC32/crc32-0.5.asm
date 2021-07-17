@@ -1,6 +1,6 @@
 ; ---------------------------------------------------------------
 ; Create CRC32 of the Diskrom 
-; Last 8 Bytes are hased as #FF
+; Last 8 Bytes are hashed as #FF
 ; ---------------------------------------------------------------
 
   output crc32-05.bin
@@ -29,9 +29,9 @@ start:
 				cpl
 				push af
 				
-				ld a,(#f348)					;Read DiskROM Location Page 1
-				ld h,%01000000					;Set page 2
-				call $24
+				ld a,(#f348)					;Read DiskROM Slot Location
+				ld h,%01000000					;Set page 1
+				call #24
 
 
 
