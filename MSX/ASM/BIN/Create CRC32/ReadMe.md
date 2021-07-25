@@ -7,8 +7,7 @@ This example creates a CRC32 Hash number to identify the DISKROM version.
 The last 8 bytes are discarded and replaced by FF, 
 these registers are used by the diskrom as parameters.
 
-Copy the bin file to a floppy and run it with bload"crc32-0.X.bin",r (
-please remove SD-Flashrom or other storage devices first).  
+Copy the bin file to a floppy and run it with bload"crc32-0.X.bin",r (please remove SD-Flashrom or other storage devices first).  
  
 **This list contains a few common DiskROM CRC's**  
 
