@@ -13,8 +13,8 @@ Version 0.24:
 
 Version 0.25: (Final)
 - Put code on clipboard if clicked.
-
- 
- 
+  
+  
+  
 Note:
 You will find a hidden message when you summon the 'Master Demon'.
