@@ -1,4 +1,4 @@
-## Maze of Galious Password Generator 0.25
+## The Maze of Galious Password Generator 0.25 (Final)
 Version 0.22:
 - World information. Closed/Open/Active/Completed. Any other value = Closed. 
 - Arrows coins and keys <100 were not displayed correctly.
