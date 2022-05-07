@@ -11,5 +11,5 @@ Version 0.24:
 - Change order of world items to, Holy Water, Cape, Rod,Map on Form.
 - Password does not always fit in label. Changed Font.
 
-Version 0.25:
+Version 0.25: (Final)
 - Put code on clipboard if clicked.
