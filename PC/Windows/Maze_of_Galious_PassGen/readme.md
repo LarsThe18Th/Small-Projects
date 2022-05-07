@@ -12,4 +12,4 @@ Version 0.24:
 - Password does not always fit in label. Changed Font.
 
 Version 0.25:
-- Put code on clipboard if code is clicked.
+- Put code on clipboard if clicked.
