@@ -6,3 +6,5 @@ In this debug mode, you are invulnerable to enemies, you get all the items/stone
 Usage:
 - Apply the IPS patch to the Firebird ROM file
 - Enter Password AAAAA in the password screen to activate debug mode.
+  
+![Firebird Debug mode](Debugmode.jpg)
