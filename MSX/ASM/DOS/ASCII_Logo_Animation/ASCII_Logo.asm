@@ -92,24 +92,3 @@ asciilogobegin:
 					db	"                                                                                "
 					db	"                                                                                "
 asciilogoend:		db  0
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
