@@ -91,4 +91,5 @@ asciilogobegin:
 					db	"                                                                                "
 					db	"                                                                                "
 					db	"                                                                                "
-asciilogoend:		db  0
+asciilogoend:				db  0
+
