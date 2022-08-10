@@ -20,14 +20,14 @@
 main:
 
 					xor a
-					ld (#fca9),a						;Set Cursor off while printing
+					ld (#fca9),a							;Set Cursor off while printing
 
-					ld iy,(#fcc0)						;Inter-SlotCall 
+					ld iy,(#fcc0)							;Inter-SlotCall 
 					ld ix,#c3							;BIOS CALL CLS
 					call #1c
 
 					ld b,17
-					ld hl,asciilogoend - 80				;Logo Pointer
+					ld hl,asciilogoend - 80						;Logo Pointer
 					
 nextrow:
 					push bc
@@ -47,7 +47,7 @@ nextchar:
 
 					ld a,(hl)							;Load Char from memory
 					and a								;Is it Zero
-					jr z,donewriting					;Yes jump to Donwriting
+					jr z,donewriting						;Yes jump to Donwriting
 						out (#98),a						;No write next Char to VRAM
 						inc hl
 						jr nextchar
@@ -55,7 +55,7 @@ nextchar:
 donewriting:
 					ei
 					ld	b,3
-waiting:			halt
+waiting:				halt
 					djnz waiting
 
 					pop hl
@@ -71,17 +71,16 @@ waiting:			halt
 
 asciilogobegin:
 
-					;    00000000011111111112222222222333333333344444444445555555555666666666777777777778
-					;    12345678901234567890123456789012345678901234567890123456789012345678901234567890
-					db	"_____.___.                           .__             ____          
-					db	"\__  |   |  ____   __ __ _______     |  |    ____   / ___\  ____   
-					db	" /   |   | /  _ \ |  |  \\_  __ \    |  |   /  _ \ / /_/  >/  _ \  
-					db	" \____   |(  <_> )|  |  / |  | \/    |  |__(  <_> )\___  /(  <_> ) 
-					db	" / ______| \____/ |____/  |__|       |____/ \____//_____/  \____/  
-					db	" \/                                                                
+					;	 00000000011111111112222222222333333333344444444445555555555666666666777777777778
+					;	 12345678901234567890123456789012345678901234567890123456789012345678901234567890
+					db	"_____.___.                           .__             ____                       "      
+					db	"\__  |   |  ____   __ __ _______     |  |    ____   / ___\  ____                "
+					db	" /   |   | /  _ \ |  |  \\_  __ \    |  |   /  _ \ / /_/  >/  _ \               "
+					db	" \____   |(  <_> )|  |  / |  | \/    |  |__(  <_> )\___  /(  <_> )              "
+					db	" / ______| \____/ |____/  |__|       |____/ \____//_____/  \____/               "
+					db	" \/                                                                             "
 					db	"                                                                                "
 					db	"                                                                                "
-
 					db	"                                                                                "
 					db	"===============================================================                 "
 					db	"                     Your Logo Here !                                           "
