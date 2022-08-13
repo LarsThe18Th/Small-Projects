@@ -30,7 +30,7 @@ main:
 
 					
 					db 0,0,0,0,"->"
-colorchoice:		db 15,1,1								;Change these last 3 bytes to set your own colors
+colorchoice:				db 15,1,1						;Change these last 3 bytes to set your own colors
 					
 
 
