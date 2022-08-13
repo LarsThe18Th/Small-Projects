@@ -24,13 +24,13 @@ main:
 					ldir
 					
 					ld iy,(#fcc0)						;Inter-SlotCall 
-					ld ix,#62							;BIOS CALL CHGCLR - Changes the screen colors
+					ld ix,#62						;BIOS CALL CHGCLR - Changes the screen colors
 					call #1c
 					ret
 
 					
 					db 0,0,0,0,"->"
-colorchoice:		db 15,1,1							;Change these last 3 bytes to set your own colors
+colorchoice:		db 15,1,1								;Change these last 3 bytes to set your own colors
 					
 
 
