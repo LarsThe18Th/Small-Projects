@@ -1,7 +1,6 @@
 # The story behind Hinotori
 
-If you are interested in the story behind Hinotori, please watch
-the Hinotori trilogy movies or the Hinotori series (English),
+If you are interested in the story behind Hinotori, please watch the Hinotori trilogy movies or the Hinotori series (English),  
 this also explains some passwords and music used in the game.
 
 More information can be found on [Wikipedia](https://en.wikipedia.org/wiki/Phoenix_(manga)
