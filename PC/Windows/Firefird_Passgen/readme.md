@@ -30,7 +30,7 @@ Now it is possible to use this password and activate the hidden debug mode.
 After patching the rom you can enter debug mode with password "AAAAA"
 - Makes you invulnerable to enemies
 - Have all items and stones
-- Shows leveldata, Left Level posittion, Right Enemy attackwave pattern.
+- Shows leveldata, Left Level posittion, Right Enemy attackwave pattern.<br>
 - 
-[Download Firebird Debugmode IPS Patch](https://github.com/LarsThe18Th/Small-Projects/tree/master/MSX/IPS&#32;Patches/Firebird&#32;Debug%20Mode&#32;Patch))
+[Download Firebird Debugmode IPS Patch](https://github.com/LarsThe18Th/Small-Projects/tree/master/MSX/IPS&#32;Patches/Firebird&#32;Debug%20Mode&#32;Patch)
 
