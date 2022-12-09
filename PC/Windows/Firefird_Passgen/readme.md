@@ -21,7 +21,7 @@ The difficulty level will be increased in the following ways:
 
 ### Debug mode
 
-While decoding the password system in the ROM, i found this password "aaaaa".
+While decoding the password system in the ROM, i found this password "aaaaa".<br>
 Firebird passwords are uppercase only, therefore it is not possible
 to enter this password during the game, so i have made an IPS patch
 to change the password into "AAAAA". Now it is possible to use
