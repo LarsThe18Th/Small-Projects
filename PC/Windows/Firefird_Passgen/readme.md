@@ -9,7 +9,7 @@ Music: [Phoenix : Karma Chapter (火の鳥 . 鳳凰編) ED full 火の鳥 (渡�
 By: NORIKO, WATANABE  
   
   
-##### Variable difficulty level in the MSX game.
+#### Variable difficulty level in the MSX game.
 
 Firebird uses a variable difficulty level ( From 0 to 15 ),
 the higher the difficulty level the more aggressive the enemies are.
