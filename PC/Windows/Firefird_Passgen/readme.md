@@ -6,9 +6,9 @@ this also explains some passwords and music used in the game.
 More information can be found on [Wikipedia](https://en.wikipedia.org/wiki/Phoenix_(manga)
 
 Music: [Phoenix : Karma Chapter (火の鳥 . 鳳凰編) ED full 火の鳥 (渡辺典子)](https://www.youtube.com/watch?v=nF1Tr-Rxy7c "Phoenix : Karma Chapter (火の鳥 . 鳳凰編) ED full 火の鳥 (渡辺典子)")
-By: NORIKO, WATANABE
-
-
+By: NORIKO, WATANABE  
+  
+  
 ##### Variable difficulty level in the MSX game.
 
 Firebird uses a variable difficulty level ( From 0 to 15 ),
