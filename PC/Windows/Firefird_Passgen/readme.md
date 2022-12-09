@@ -12,7 +12,7 @@ By: NORIKO, WATANABE<br><br>
 ### Variable difficulty level in the MSX game.<br>
 
 Firebird uses a variable difficulty level ( From 0 to 15 ),
-the higher the difficulty level the more aggressive the enemies are.
+the higher the difficulty level the more aggressive the enemies are.<br>
 The difficulty level will be increased in the following ways:
 - The stronger the weapon, the higher the difficulty level (Strongest weapon +6)
 - Every time a password is entered + 1 ( until level 10 is reached )
