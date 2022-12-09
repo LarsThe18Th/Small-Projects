@@ -33,5 +33,5 @@ After patching the rom you can enter debug mode with password "AAAAA"
 - Shows leveldata, Left Level posittion, Right Enemy attackwave pattern.
 
 <br>
-[Download Firebird Debugmode IPS Patch](https://github.com/LarsThe18Th/Small-Projects/tree/master/MSX/IPS%20Patches/Firebird%20Debug%20Mode%20Patch "Download Firebird Debugmode IPS Patch")
+[Download Firebird Debugmode IPS Patch] (https://github.com/LarsThe18Th/Small-Projects/tree/master/MSX/IPS%20Patches/Firebird%20Debug%20Mode%20Patch "Download Firebird Debugmode IPS Patch")
 
