@@ -1,4 +1,4 @@
-# The story behind Hinotori<br>
+# The story behind Hinotori<br><br><br><br>
 
 If you are interested in the story behind Hinotori, please watch the Hinotori trilogy movies or the Hinotori series (English),  
 this also explains some passwords and music used in the game.
