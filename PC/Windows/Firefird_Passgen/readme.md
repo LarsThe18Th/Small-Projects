@@ -5,7 +5,7 @@ this also explains some passwords and music used in the game.
 
 More information can be found on [Wikipedia](https://en.wikipedia.org/wiki/Phoenix_(manga)
 
-[Phoenix : Karma Chapter (火の鳥 . 鳳凰編) ED full 火の鳥 (渡辺典子)](https://www.youtube.com/watch?v=nF1Tr-Rxy7c "Phoenix : Karma Chapter (火の鳥 . 鳳凰編) ED full 火の鳥 (渡辺典子)")
+Music: [Phoenix : Karma Chapter (火の鳥 . 鳳凰編) ED full 火の鳥 (渡辺典子)](https://www.youtube.com/watch?v=nF1Tr-Rxy7c "Phoenix : Karma Chapter (火の鳥 . 鳳凰編) ED full 火の鳥 (渡辺典子)")
 By: NORIKO, WATANABE
 
 
