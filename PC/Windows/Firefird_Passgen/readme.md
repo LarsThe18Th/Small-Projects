@@ -2,7 +2,7 @@
 
 <br><br>
 If you are interested in the story behind Hinotori, please watch the Hinotori trilogy movies or the Hinotori series (English),  
-this also explains some passwords and music used in the game.
+this also explains some passwords and music used in the MSX game.
 
 More information can be found on [Wikipedia](https://en.wikipedia.org/wiki/Phoenix_(manga)
 
@@ -20,7 +20,7 @@ The difficulty level will be increased in the following ways:
 - Every time you defeat a boss +1
 
 
-##### Debug mode
+### Debug mode
 
 While decoding the password system in the ROM, i found this password "aaaaa".
 Firebird passwords are uppercase only, therefore it is not possible
