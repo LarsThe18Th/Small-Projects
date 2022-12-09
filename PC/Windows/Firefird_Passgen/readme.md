@@ -1,4 +1,4 @@
-# The story behind Hinotori
+# The story behind Hinotori<br>
 
 If you are interested in the story behind Hinotori, please watch the Hinotori trilogy movies or the Hinotori series (English),  
 this also explains some passwords and music used in the game.
@@ -8,7 +8,7 @@ More information can be found on [Wikipedia](https://en.wikipedia.org/wiki/Phoen
 Music: [Phoenix : Karma Chapter (火の鳥 . 鳳凰編) ED full 火の鳥 (渡辺典子)](https://www.youtube.com/watch?v=nF1Tr-Rxy7c "Phoenix : Karma Chapter (火の鳥 . 鳳凰編) ED full 火の鳥 (渡辺典子)")
 By: NORIKO, WATANABE<br><br>
 
-### Variable difficulty level in the MSX game.
+### Variable difficulty level in the MSX game.<br>
 
 Firebird uses a variable difficulty level ( From 0 to 15 ),
 the higher the difficulty level the more aggressive the enemies are.
