@@ -17,7 +17,7 @@ The difficulty level will be increased in the following ways:
 - The stronger the weapon, the higher the difficulty level (Strongest weapon +6)
 - Every time a password is entered + 1 ( until level 10 is reached )
 - Every time you defeat a boss +1
-
+<br><br>
 
 ### Debug mode
 
