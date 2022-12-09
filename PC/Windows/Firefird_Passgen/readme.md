@@ -13,7 +13,6 @@ By: NORIKO, WATANABE<br><br>
 
 Firebird uses a variable difficulty level ( From 0 to 15 ),
 the higher the difficulty level the more aggressive the enemies are.
-
 The difficulty level will be increased in the following ways:
 - The stronger the weapon, the higher the difficulty level (Strongest weapon +6)
 - Every time a password is entered + 1 ( until level 10 is reached )
@@ -22,6 +21,7 @@ The difficulty level will be increased in the following ways:
 
 ### Debug mode
 
+<br>
 While decoding the password system in the ROM, i found this password "aaaaa".
 Firebird passwords are uppercase only, therefore it is not possible
 to enter this password during the game, so i have made an IPS patch
