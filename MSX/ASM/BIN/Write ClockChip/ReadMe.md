@@ -17,7 +17,7 @@ Now you can start the game 'FireHawk' in the final level.
 
 [Real Time Clock Programming Guide](https://www.msx.org/wiki/Real_Time_Clock_Programming)
 
-### OpenMSX-debugger Registers and Blocks overview
+### OpenMSX-debuggable view: (Realtime clock SRAM)
 | Register | 0	| 1	| 2	| 3	| 4	| 5	| 6	| 7	| 8	| 9	| 10 | 11 | 12| 
 | -------- |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |
 | Block 0 |*0*|*1*|*2*|*3*|*4*|*5*|*6*|*7*|*8*|*9*|*A*|*B*|*C*|
