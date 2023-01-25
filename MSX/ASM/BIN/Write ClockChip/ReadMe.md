@@ -17,10 +17,10 @@ Now you can start the game 'FireHawk' in the final level.
 
 [Real Time Clock Programming Guide](https://www.msx.org/wiki/Real_Time_Clock_Programming)
 
-#### openMSX-debugger Registers and Blocks overview
+#### OpenMSX-debugger Registers and Blocks overview
 | Register | 0	| 1	| 2	| 3	| 4	| 5	| 6	| 7	| 8	| 9	| 10 | 11 | 12| 
 | -------- |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |
 | Block 0 |*0*|*1*|*2*|*3*|*4*|*5*|*6*|*7*|*8*|*9*|*A*|*B*|*C*|
 | Block 1 |*D*|*E*|*F*|*10*|*11*|*12*|*13*|*14*|*15*|*16*|*17*|*18*|*19*|
-| Block 2 |*1A|*1B*|*1C*|*1D*|*1E*|*1F*|*20*|*21*|*22*|*23*|*24*|*25*|*26*|
+| Block 2 |*1A*|*1B*|*1C*|*1D*|*1E*|*1F*|*20*|*21*|*22*|*23*|*24*|*25*|*26*|
 | Block 3 |*27*|*28*|*29*|*2A|*2B*|*2C*|*2D*|*2E*|*2F*|*30*|*31*|*32*|*33*|
