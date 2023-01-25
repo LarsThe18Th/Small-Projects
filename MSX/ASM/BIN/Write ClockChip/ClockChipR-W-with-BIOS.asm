@@ -1,6 +1,6 @@
-; This example writes 7 Nibbles to the clockchip
+; This example writes 7 Nibbles to the clockchip (Backwards)
 ; with use of BIOS
-; Bank 1 Nibble 2 - 8
+; Bank 1 Registers 2 - 8
 ; It can be used to store a savegame for Firehawk Thexde 2
 
 	output WrClkBio.bin
@@ -26,8 +26,8 @@ start:
 				ld b,7
 				ld hl,savedata
 loop:
-				ld a,#10				;Set bit 7,6,5,4 to 0001 Bank1
-				or b					;Set Nibble
+				ld a,#10				;Bank 01
+				or b					;Set Register
 				ld c,a
 				inc c
 				
@@ -35,6 +35,11 @@ loop:
 				
 				ld ix,#01f9				;Set SubBIOS WRTCLK
 				call #015f				;Sub BIOS Call	
+				
+				;      |BL|Regis|
+				;C = XX|54|32310|	(Block bits 5-4) and (Register Bits 3-0).
+				;A = data to write.	(4 least significant bits) 
+
 
 				inc hl
 
@@ -42,11 +47,10 @@ loop:
 				ret
 
 savedata:
-				;db #03,#05,#0c,#03,#01,#0e,#00
 				db #00,#0e,#01,#03,#0c,#05,#09
 
 
 
 
 
-end					
+end
