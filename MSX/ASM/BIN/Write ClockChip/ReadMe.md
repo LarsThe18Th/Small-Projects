@@ -6,7 +6,7 @@ Now you can start the game 'FireHawk' in the final level.
 - ClockChipR-W-with-I-O.asm Writes to ClockChip thru I/O Ports.  
 - ClockChipR-W-with-BIOS.asm Writes to CLockChip thru BIOS calls.
 
-** Registers and Blocks overview
+** Registers and Blocks overview **
 | Register | 0	| 1	| 2	| 3	| 4	| 5	| 6	| 7	| 8	| 9	| 10 | 11 | 12| 13 | 14 | 15 |
 | -------- |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |
 | Block 0 |*0*|*1*|*2*|*3*|*4*|*5*|*6*|*7*|*8*|*9*|*A*|*B*|*C*|`D`|`E`|`F`|
