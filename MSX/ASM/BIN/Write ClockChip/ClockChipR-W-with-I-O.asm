@@ -22,7 +22,7 @@
 	code
 
 start:
-				;Port #B4 select register (0-15) (Register 13 = Block to select [Bits 0,1])
+				;Port #B4 select register (0-15) (Register 13 = Block select [Bits 0,1])
 				;Port #B5 Read/Write selected register. (Bits 4-7 are not used) 
 				
 				di
