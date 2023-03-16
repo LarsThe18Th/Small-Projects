@@ -29,8 +29,8 @@ begin:
 						call #5c						;LDIRVM BIOS Call :Block transfer From Memory to VRAM
 
 
-						;Loop Copy 16x
-						ld b,19							;Loop 16x
+						;Loop Copy 19x
+						ld b,19							;Loop 19x
 						ld de,#03c0						;Base Adress
 loop
 							ld hl,#ffd8
