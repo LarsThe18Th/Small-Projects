@@ -98,7 +98,7 @@ charsend:
 
 
 msg:					db "          Video RAM: 16Kbytes           "
-						db "          User  RAM: 16Kbytes"
+						db "          User  RAM: 64Kbytes"
 msgend:
 
 
