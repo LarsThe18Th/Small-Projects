@@ -48,10 +48,8 @@ loop
 							pop bc
 
 							ei
-							ld a,255
-delay:								halt
-									halt
-							jp nz,delay
+delay:						halt
+							halt
 
 						djnz loop
 						
