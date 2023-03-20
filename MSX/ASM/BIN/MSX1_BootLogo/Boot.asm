@@ -32,7 +32,7 @@ begin:
 						;Loop Copy 19x
 						ld b,19							;Loop 19x
 						ld de,#03c0						;Base Adress
-loop
+loop:
 							ld hl,#ffd8
 							add hl,de					;Add #28 With Use Of Carrier
 							ex de,hl
