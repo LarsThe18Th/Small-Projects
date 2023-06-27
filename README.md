@@ -2,9 +2,9 @@
 Here you can find the following small projects
 
 - MSX
-  - ASM Small Assembler Programms
-  - IPS Patcher to Fix bugs in games
+  - ASM Small Assembler MSX Projects
+  - IPS Patches to Fix bugs in some games
 
 - PC
-  - ASM a splashscreen in ASM for MS-DOS
+  - ASM A splashscreen in Assembler for MS-DOS
   - WINDOWS Some Password Generators for Windows
