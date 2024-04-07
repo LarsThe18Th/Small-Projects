@@ -6,5 +6,8 @@ Only for MSX computers with a **S279X** (or compatible) floppy drive controller.
   
 #### Do not use this tool with real floppy drives, the head knocking could misalign the heads of the drive. Use at your own risk!. 
   
+Gotek Direct Access Mode:  
+![DA_Mode](Documents/da_mode.jpg)
+  
 FDD Controllers Registers:  
 ![FDD_Controllers_Registers](Documents/FDD_Controllers_Registers.jpg)
