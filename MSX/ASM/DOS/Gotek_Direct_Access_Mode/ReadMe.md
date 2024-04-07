@@ -1,6 +1,6 @@
 ## Gotek Direct Access Mode
 
-Example code on how to switch the Gotek in Direct Assecc Mode by selecting Track 255.  
+Example code on how to switch the Gotek in Direct Access Mode by selecting Track 255.  
   
   
 FDD Controllers Registers:  
