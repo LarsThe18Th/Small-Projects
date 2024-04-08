@@ -24,6 +24,6 @@
 Both IPS patches can be combined !  
 <br>
 
-IPS patches created with following ROM:  
+IPS patches created with following USAS ROM:  
 SHA1:632cb0834441626d20cc113cfad2e3a7ec0e0dc7
 
