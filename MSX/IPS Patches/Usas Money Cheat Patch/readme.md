@@ -1,14 +1,14 @@
 ## Usas Cheat Patches  
 <br>  
 
-#### Usas Money Cheat Patch  
+### Usas Money Cheat Patch  
 
 Patched with Usas ROM 
 - Get ANY coin and you wil have 9999 Money
 <br><br>
   
-#### Usas Ultimate Cheated ROM
-Hold down folowing keys at startup to select cheat,
+### Usas Ultimate Cheated ROM
+  Hold down folowing keys at startup to select cheat,
 - Hold [Select] to Flip between 50/60 Hz
 - Hold [F1]  to select Japanese version
 - Hold [F3] to enable ALL cartridge combinations for Uşas
