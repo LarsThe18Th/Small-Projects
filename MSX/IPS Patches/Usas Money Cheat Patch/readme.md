@@ -5,13 +5,12 @@
 - Get ANY coin and you wil have 9999 Money
 <br><br>
 
-### <ins>Usas Ultimate Cheated ROM</ins>
+### <ins>Usas Ultimate Cheated Patch</ins>
   Hold down folowing keys at startup to select cheat,
 - Hold [Select] to Flip between 50/60 Hz
 - Hold [F1]  to select Japanese version
 - Hold [F3] to enable ALL cartridge combinations for Usas
 <br><br>
-
 
 | All cartridge combinations. | Result |
 | ------------- | -------------|
