@@ -12,7 +12,7 @@
 - Hold [F3] to enable ALL cartridge combinations for Usas
 <br><br>
 
-| All cartridge combinations. | Result |
+| All cartridge combinations | Result |
 | ------------- | :-------------|
 | F1 Spirit / A1 Spirit | In any mood, the secret powers of the happy mood are active |
 | Gradius 2 / Nemesis 2 | F5 Continue |
