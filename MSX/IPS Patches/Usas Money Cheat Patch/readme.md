@@ -1,11 +1,11 @@
 ## Usas Cheat Patches  
 <br>
 
-### <ins>Usas Money Cheat Patch</ins>
+#### <ins>Usas Money Cheat Patch</ins>
 - Get ANY coin and you wil have 9999 Money
 <br><br>
 
-### <ins>Usas Ultimate Cheated Patch</ins>
+#### <ins>Usas Ultimate Cheated Patch</ins>
   Hold down folowing keys at startup to select cheat,
 - Hold [Select] to Flip between 50/60 Hz
 - Hold [F1]  to select Japanese version
