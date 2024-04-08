@@ -3,7 +3,7 @@
 
 ### Usas Money Cheat Patch  
 
-Patched with Usas ROM 
+
 - Get ANY coin and you wil have 9999 Money
 <br><br>
   
@@ -20,6 +20,9 @@ All cartridge combinations.
 >- The Maze Of Galious     -> 100 coins at the start  
 >- Metal Gear 1            -> Halves vitality damage
   
+<br>
+
+Both IPS pashed can be combined !  
 <br>
 
 IPS patches created with following ROM  
