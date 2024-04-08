@@ -13,9 +13,9 @@
 <br><br>
 
 | All cartridge combinations. | Result |
-| ------------- | -------------|
+| ------------- | :-------------|
 | F1 Spirit / A1 Spirit | In any mood, the secret powers of the happy mood are active |
-| Gradius 2 / Nemesis 2 | Continue F5 |
+| Gradius 2 / Nemesis 2 | F5 Continue |
 | The Maze Of Galious | 100 coins at the start |
 | Metal Gear 1 | Halves vitality damage |
 
