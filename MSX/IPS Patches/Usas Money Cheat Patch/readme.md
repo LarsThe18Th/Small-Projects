@@ -21,7 +21,7 @@
 
 <br>
 
-Both IPS pashed can be combined !  
+Both IPS patches can be combined !  
 <br>
 
 IPS patches created with following ROM:  
