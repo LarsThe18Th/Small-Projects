@@ -6,7 +6,7 @@
 
 ### ToDo
 - Get rid of the 2 Undocumented instructions (dec ixl & ld ixl,n) ?
-
+- Place SinusData (sinpl) and (Character Data) Right behind main programm (Now #7F00)
 
 ### Done
 - Push any key to end  
