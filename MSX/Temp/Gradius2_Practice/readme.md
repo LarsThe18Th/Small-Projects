@@ -5,7 +5,7 @@
 This version is intended for practicing the game.  
 <br>  
 
-Download: [Gradius2_Practice.ROM](Nemesis2_Practice.ROM)  
+Download: [Gradius2_Practice.ROM](Gradius2_Practice.ROM)  
 <br>
 
 Features:
