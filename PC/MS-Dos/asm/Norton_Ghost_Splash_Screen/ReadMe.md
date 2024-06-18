@@ -15,4 +15,4 @@ Compiled Size:
 - Turbo Pascal **266.918 bytes**
 - Free Pascal **267.293 bytes**
 
-![alt text](https://github.com/Bagster/Projects/blob/master/PC/MS-Dos/asm/Norton_Ghost_Splash_Screen/Ghost.jpg "Ghost Splash Screen")
+![alt text](Ghost.jpg "Ghost Splash Screen")
