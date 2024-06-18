@@ -1,4 +1,4 @@
-#Norton Ghost Splash Screen (Ms-DoS)
+# Norton Ghost Splash Screen (Ms-DoS)
 
 Found back an old project, a splash screen for Norton Ghost in MS-DOS.<br>
 It's programmed in Assembler and assembled with [Flat Assembler](http://flatassembler.net/),<br>
