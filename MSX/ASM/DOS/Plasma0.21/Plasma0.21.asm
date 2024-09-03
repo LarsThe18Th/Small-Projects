@@ -33,7 +33,7 @@ delay:				; halt
 					; djnz delay
 
 
-					;di
+					; di
 					; ld hl,#0000						; TXTNAM set pattern name table address
 					; ld (#f3b3),hl 
 
