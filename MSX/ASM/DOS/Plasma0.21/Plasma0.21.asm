@@ -175,7 +175,7 @@ plas_lp:
 
 					; db #dd							; #DD, 2E -> Undocumented instruction !
 					; ld l,24							; ld ixl,n
-					ld ixl,24							; May crash on zome Z80 CPU's
+					ld ixl,24							; May crash on some Z80 CPU's
 
 ply:
 					ld a,40
@@ -229,7 +229,7 @@ plx:
 
 					; db #dd							; #DD, 2D -> Undocumented instruction !
 					; dec l								; dec ixl
-					dec ixl								; May crash on zome Z80 CPU's
+					dec ixl								; May crash on some Z80 CPU's
 					jp nz,ply
 
 					; Copy to Screen
