@@ -29,7 +29,7 @@ main:
 
 					; Delay - Wait for the disk drive to stop
 					; ld b,128
-delay:				;	halt
+delay:				; halt
 					; djnz delay
 
 
