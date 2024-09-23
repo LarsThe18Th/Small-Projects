@@ -20,11 +20,11 @@ inspired by this [*MSX computer magazine* article.](https://www.msxcomputermagaz
 <br>
 
 To play MIDI files you can use [*MIDRY*](https://github.com/LarsThe18Th/Small-Projects/raw/refs/heads/master/MSX/Hardware/Joy_MIDI/Midry.zip), a MIDI file player with GUI and support for several Japanese MIDI interfaces,  
-including internal/external MSX-MIDI, MIDI Saurus and TADA-MIDI - also support for ReComPoser MIDI files (.RCP) (MSX2/2+/MSX turbo R)  
+including internal/external MSX-MIDI, MIDI Saurus and TADA-MIDI - also support for ReComPoser MIDI files (.RCP) (MSX2/2+/MSX turbo R/SX-1)  
 
 <br>
 
-Start MIDRY with the following command  
+Start MIDRY with the following command:  
  
 Joy_MIDI in Port 1  
 ```midry /i31 midifile.mid```
