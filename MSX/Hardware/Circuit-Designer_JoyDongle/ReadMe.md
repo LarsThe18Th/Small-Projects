@@ -8,10 +8,13 @@
 The original Circuit-Designer Joystick Dongle looks like this.  
  
 ![The original dongle looks like this.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Original_Dongle.jpg)
+A Quad 2-input NAND Gate IC is used with the following logic.  
+
+![Qnand.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Qnand.png)
 
 <br>
 
-After reverse engineering the Circuit-Designer software, I created this truth table.
+After reverse engineering the Circuit-Designer software, i created this truth table.
 
 | Output | Output | Input |  
 | :------------: | :------------: | :------------:|
