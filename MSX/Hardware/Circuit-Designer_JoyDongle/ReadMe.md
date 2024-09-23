@@ -32,6 +32,6 @@ with only a *NOT* and a *AND* gate.
 
 <br>
 
-My intention was to make the logic gates with only transistors and resistors, this is the circuit I used.  
+My intention was to make the logic gates with only *(NPN)* transistors and resistors, this is the circuit I used.  
 
 ![Schematic.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Schematic.jpg)
