@@ -8,7 +8,8 @@ Reverse engineered Circuit-Designer copy protection dongle.
 <br>
 <br>  
 
-
+The original dongle looks like this.
+![The original dongle looks like this.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Original_Dongle.jpg)
 
 Truth table  
 
