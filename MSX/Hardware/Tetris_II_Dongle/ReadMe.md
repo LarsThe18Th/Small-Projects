@@ -1,7 +1,7 @@
 ## Tetris II Joystick Dongle (Copy Protection)
 
 
-![Circuit-Designer.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/CD_front.jpg)
+![Tetris_II](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Tetris_II_Dongle/Tetris2.jpg)
 
 <br>
 
