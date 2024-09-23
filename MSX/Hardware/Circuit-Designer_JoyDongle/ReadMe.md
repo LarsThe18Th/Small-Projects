@@ -48,6 +48,6 @@ After soldering the components on a perfboard, this is the end result.
 
 <br>
 
-For testing the dongle, i wrote a test programm ```DongleTest.asm``` to see what the results are.  
-The result should be ```0100``` *(dongle in Port 2)*  
+To test the dongle, i wrote a test programm ```DongleTest.asm``` to see what the results are.  
+The result should be ```0100``` as indicated in the truth table *(dongle in Port 2)*  
 Start with ```bload"test.bin",r ```
