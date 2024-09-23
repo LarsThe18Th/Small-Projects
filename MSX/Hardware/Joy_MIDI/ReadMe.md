@@ -11,15 +11,15 @@ inspired by this [*MSX computer magazine* article.](https://www.msxcomputermagaz
 <br>
 
 | DB9 | Cable | DIN |  
-| :---------- | :--------- | :------------------ |
-| Pin 6 (Trg1)| 220 Ohm    | MIDI Pin 5 (MIDI 2) | 
-| Pin 5 (+5V) | 220 Ohm    | MIDI Pin 4 (MIDI 1) | 
-| Pin 9 (GND) | ---------- | MIDI Pin 2 (SHIELD) |  
+| :---------- | :--------------- | :------------------ |
+| Pin 6 (Trg1)| 220 Ohm Resistor | MIDI Pin 5 (MIDI 2) | 
+| Pin 5 (+5V) | 220 Ohm Resistor | MIDI Pin 4 (MIDI 1) | 
+| Pin 9 (GND) | -------------------------| MIDI Pin 2 (SHIELD) |  
 
 <br>
 <br>
 
-To play MIDI files you can use [*MIDRY*.](https://www.msxcomputermagazine.nl/mccm/millennium/milc/hardware/topic_0.htm), a MIDI file player with GUI and support for several Japanese MIDI interfaces  
+To play MIDI files you can use [*MIDRY*](https://www.msxcomputermagazine.nl/mccm/millennium/milc/hardware/topic_0.htm), a MIDI file player with GUI and support for several Japanese MIDI interfaces,  
 including internal/external MSX-MIDI, MIDI Saurus and TADA-MIDI - also support for ReComPoser MIDI files (.RCP) (MSX2/2+/MSX turbo R)  
 
 <br>
@@ -31,5 +31,4 @@ Joy_MIDI in Port 1
 
 Joy_MIDI in Port 2  
 ```midry /i32 midifile.mid```
-
 
