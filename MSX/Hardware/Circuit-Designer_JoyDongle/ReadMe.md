@@ -16,10 +16,10 @@ After reverse engineering the Circuit-Designer software, I created this truth ta
 | Output | Output | Input |  
 | :------------: | :------------: | :------------:|
 | Pin<br> 7 | Pin<br> 6 | Pin<br> 1 | 
-| 0 | 1 | 1 | 
 | 0 | 0 | 0 | 
-| 0 | 1 | 0 | 
-| 0 | 1 | 0 |  
+| 0 | 1 | 1 | 
+| 1 | 0 | 0 | 
+| 1 | 1 | 0 |  
 
 <br>
 
@@ -38,6 +38,11 @@ My intention was to make the logic gates with only *(NPN)* transistors and resis
 
 <br>
 
-After some soldering the components on a perfboard, this is the end result.  
+After soldering the components on a perfboard, this is the end result.  
 
-![Result.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Circuit.jpg)
+![Result.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Circuit.jpg)  
+
+<br>
+
+For testing you can use the following test program to see what the results are.
+The result should be 0100. (dongle in Port 2)
