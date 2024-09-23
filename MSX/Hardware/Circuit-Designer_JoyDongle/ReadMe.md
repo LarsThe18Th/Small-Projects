@@ -23,5 +23,5 @@ Truth table
 You can create this with a NOT and an AND gate.   
 ![You can create this with a NOT and an AND gate.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/notand.png)
 
-My intention was to make the logic gates with only transistors and resistors
+My intention was to make the logic gates with only transistors and resistors, this is the circuit I used.
 ![Schematic.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Schematic.jpg)
