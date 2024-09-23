@@ -1,53 +1,32 @@
-## Joy_MIDI (A simple MIDI a simple midi Out connection through the MSX joystick port)
+## Joy_MIDI  
 
+<br>
+<br>
+
+A simple MIDI-OUT connection through the MSX joystick port,  
+inspired by this [*MSX computer magazine* article.](https://www.msxcomputermagazine.nl/mccm/millennium/milc/hardware/topic_0.htm)  
 
 ![Circuit-Designer.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Joy_MIDI/Joy_MIDI.jpg)
 
 <br>
 
-The original Circuit-Designer Joystick Dongle looks like this.  
+| DB9 | Cable | DIN |  
+| :---------- | :--------- | :------------------ |
+| Pin 6 (Trg1)| 220 Ohm    | MIDI Pin 5 (MIDI 2) | 
+| Pin 5 (+5V) | 220 Ohm    | MIDI Pin 4 (MIDI 1) | 
+| Pin 9 (GND) | ---------- | MIDI Pin 2 (SHIELD) |  
+
+<br>
+<br>
+
+To play MIDI files we use MIDRY, a MIDI file player with GUI with support for several Japanese MIDI interfaces including internal/external MSX-MIDI, MIDI Saurus and TADA-MIDI - also support for ReComPoser MIDI files (.RCP) (MSX2/2+/MSX turbo R)  
+
+Start MIDRY with the following command  
  
-![The original dongle looks like this.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Original_Dongle.jpg)  
+Joy_MIDI in port 1  
+```midry /i31 midifile.mid```
 
-A Quad 2-input NAND Gate IC is used with the following logic.  
-
-![Qnand.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Qnand.jpg)
-
-<br>
-
-After reverse engineering the Circuit-Designer software, i created this truth table.
-
-| Output | Output | Input |  
-| :------------: | :------------: | :------------:|
-| Pin<br> 7 | Pin<br> 6 | Pin<br> 1 | 
-| 0 | 0 | 0 | 
-| 0 | 1 | 1 | 
-| 1 | 0 | 0 | 
-| 1 | 1 | 0 |  
-
-<br>
-
-With the above truth table you can create the following logical diagram
-with only a *NOT* and a *AND* gate.  
+Joy_MIDI in port 2  
+```midry /i32 midifile.mid```
 
 
-  
-![You can create this with a NOT and an AND gate.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/notand.png)
-
-<br>
-
-My intention was to crteate the logic gates with only *(NPN)* transistors and resistors, this is the circuit I used.  
-
-![Schematic.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Schematic.jpg)  
-
-<br>
-
-After soldering the components on a perfboard, this is the end result.  
-
-![Result.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Circuit.jpg)  
-
-<br>
-
-To test the dongle, i wrote a testprogramm ```DongleTest.asm``` to see what the results are.  
-The results should be ```0100``` as indicated in the truth table. *(dongle in Port 2)*  
-Start with ```bload"test.bin",r ```
