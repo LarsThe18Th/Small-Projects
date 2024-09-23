@@ -27,7 +27,7 @@ After reverse engineering the Tetris II game, i created this truth table.
 | 1 | 0 | 1 | 
 | 1 | 1 | 1 |  
 
-<br>
+<br><br>
 
 To test the dongle, i wrote a testprogramm ```TTest.asm``` to see what the results are.  
 The results should be ```0011``` as indicated in the truth table. *(dongle in Port 2)*  
