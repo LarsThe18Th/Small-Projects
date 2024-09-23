@@ -16,5 +16,6 @@ Truth table
 | 0 | 1 | 0 |  
 
 <br> 
+You can create this with a NOT and an AND gate.  
 
-![You can create this with a NOT and an AND gate.](https://github.com/LarsThe18Th/MSX_Copyprotection/blob/main/Moonblaster1.4/Image1.jpg)
+![You can create this with a NOT and an AND gate.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/notand.png)
