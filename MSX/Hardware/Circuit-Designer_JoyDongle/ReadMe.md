@@ -38,5 +38,5 @@ My intention was to make the logic gates with only *(NPN)* transistors and resis
 
 <br>
 
-After some soldering the components on a perfboard, this is the end result.
+After some soldering the components on a perfboard, this is the end result.  
 ![Result.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Circuit.jpg)
