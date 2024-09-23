@@ -34,14 +34,16 @@ start:
 
 								ld b,4						; Loop 4 times
 								ld hl,pinout				; Read port values
-outerloop:						ld c,(hl)
+outerloop:
+								ld c,(hl)
 
 								call setport
 								inc hl
 
 								; Pause
 								ld de,#ffff
-innerloop:						dec de
+innerloop:						
+								dec de
 								ld a,d
 								or e
 								jr nz,innerloop
