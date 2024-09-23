@@ -34,4 +34,9 @@ with only a *NOT* and a *AND* gate.
 
 My intention was to make the logic gates with only *(NPN)* transistors and resistors, this is the circuit I used.  
 
-![Schematic.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Schematic.jpg)
+![Schematic.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Schematic.jpg)  
+
+<br>
+
+After some soldering the components on a perfboard, this is the end result.
+![Result.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Circuit.jpg)  
