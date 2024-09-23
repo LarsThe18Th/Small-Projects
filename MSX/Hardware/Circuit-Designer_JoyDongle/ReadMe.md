@@ -8,7 +8,8 @@
 The original Circuit-Designer Joystick Dongle looks like this.  
  
 ![The original dongle looks like this.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Original_Dongle.jpg)
- 
+
+<br>
 
 After reverse engineering the Circuit-Designer software, I created this truth table.
 
