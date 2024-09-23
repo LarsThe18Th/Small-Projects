@@ -37,10 +37,10 @@ Start with ```bload"ttest.bin",r ```
 
 # P.s.  
 
-After examining the schematic of the dongle, it appears that there is an even simpler solution for this dongle,
-by just soldering a Resistor between Pin 4 and Pin 7. 
+After examining the schematic of the dongle, it appears that there is an even simpler solution for this dongle,  
+by just soldering a Resistor between Pin 4 and Pin 7.  
 ![Resistor.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Tetris_II_Dongle/Resistor.jpg)  
-``` ¯\_(ツ)_/¯```
+``` ¯\_(ツ)_/¯  ```
 
   
 
