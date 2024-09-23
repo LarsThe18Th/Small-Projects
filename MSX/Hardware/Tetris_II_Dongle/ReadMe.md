@@ -5,17 +5,17 @@
 
 <br>
 
-The original Circuit-Designer Joystick Dongle looks like this.  
+The original Tetris II Joystick Dongle looks something like this. (Photo of a clone dongle)  
  
-![The original dongle looks like this.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Original_Dongle.jpg)  
+![The original dongle looks like this.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Tetris_II_Dongle/T2_Dongle.jpg)  
 
-A Quad 2-input NAND Gate IC is used with the following logic.  
+A Quad 2-input NOR Gate IC is used with the following logic.  
 
-![Qnand.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Qnand.jpg)
+![Qnor.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Tetris_II_Dongle/Qnor.jpg)
 
 <br>
 
-After reverse engineering the Circuit-Designer software, i created this truth table.
+After reverse engineering the Tetris II game, i created this truth table.
 
 | Output | Output | Input |  
 | :------------: | :------------: | :------------:|
@@ -25,29 +25,17 @@ After reverse engineering the Circuit-Designer software, i created this truth ta
 | 1 | 0 | 1 | 
 | 1 | 1 | 1 |  
 
+To test the dongle, i wrote a testprogramm ```TTest.asm``` to see what the results are.  
+The results should be ```0011``` as indicated in the truth table. *(dongle in Port 2)*  
+Start with ```bload"ttest.bin",r ```
+
 <br>
 
-With the above truth table you can create the following logical diagram
-with only a *NOT* and a *AND* gate.  
+# P.s.  
 
-
+After examining the schematic of the dongle, it appears that there is an even simpler solution for this dongle,
+by just soldering a Resistor between Pin 4 and Pin 7. 
+![Resistor.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Tetris_II_Dongle/Resistor.jpg)
   
-![You can create this with a NOT and an AND gate.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/notand.png)
 
-<br>
 
-My intention was to crteate the logic gates with only *(NPN)* transistors and resistors, this is the circuit I used.  
-
-![Schematic.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Schematic.jpg)  
-
-<br>
-
-After soldering the components on a perfboard, this is the end result.  
-
-![Result.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Circuit.jpg)  
-
-<br>
-
-To test the dongle, i wrote a testprogramm ```DongleTest.asm``` to see what the results are.  
-The results should be ```0100``` as indicated in the truth table. *(dongle in Port 2)*  
-Start with ```bload"test.bin",r ```
