@@ -36,7 +36,7 @@ with only a *NOT* and a *AND* gate.
 
 <br>
 
-My intention was to make the logic gates with only *(NPN)* transistors and resistors, this is the circuit I used.  
+My intention was to crteate the logic gates with only *(NPN)* transistors and resistors, this is the circuit I used.  
 
 ![Schematic.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/Schematic.jpg)  
 
@@ -48,6 +48,6 @@ After soldering the components on a perfboard, this is the end result.
 
 <br>
 
-To test the dongle, i wrote a test programm ```DongleTest.asm``` to see what the results are.  
-The result should be ```0100``` as indicated in the truth table *(dongle in Port 2)*  
+To test the dongle, i wrote a testprogramm ```DongleTest.asm``` to see what the results are.  
+The result should be ```0100``` as indicated in the truth table. *(dongle in Port 2)*  
 Start with ```bload"test.bin",r ```
