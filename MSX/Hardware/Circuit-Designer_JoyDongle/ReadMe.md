@@ -1,9 +1,14 @@
 ## Circuit-Designer Joystick Dongle (Copy Protection)
 
+
+![Circuit-Designer.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Circuit-Designer_JoyDongle/CD_front.jpg)
+
 <br>  
 Reverse engineered Circuit-Designer copy protection dongle.
 <br>
 <br>  
+
+
 
 Truth table  
 
