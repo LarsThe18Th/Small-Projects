@@ -60,7 +60,7 @@ setport:
 								ld a,#0e
 								out (#a0),a					; Select register Port 14
 								in a,(#a2)					; Read Joystick port 2
-								and 8						; Only need UP status (Pin1)
+								and 8						; Only need RIGHT status (Pin4)
 								rrca
 								rrca
 								rrca
