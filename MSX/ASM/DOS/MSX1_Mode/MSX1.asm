@@ -14,7 +14,6 @@
 
 
 
-					ld	b,a								; Example by NYYRIKKI	
 					ld a,40								; Width 40
 					ld (#f3ae),a						; Write screen width
 					
