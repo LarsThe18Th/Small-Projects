@@ -14,7 +14,12 @@
 
 
 
-					ld a,40								; Width 40
+					jr begin
+nametag:
+					dw #614C,#7372,#5420,#6568,#3120,#5438,#2068
+					db "(c)2014 / 2025  "
+
+begin:				ld a,40								; Width 40
 					ld (#f3ae),a						; Write screen width
 					
 					ld ix,#006c							; Switch to screen 0 BIOS Call
@@ -68,9 +73,7 @@ palette:
 		db #36,#03,#47,#04,#62,#02,#47,#07
 		db #73,#03,#74,#04,#62,#05,#63,#06
 		db #11,#05,#66,#03,#66,#06,#77,#07
-						
-nametag:
-		dw #614C,#7372,#5420,#6568,#3120,#5438,#2068
-		db "(c)2014 / (c)2025"
+
+
 
 end

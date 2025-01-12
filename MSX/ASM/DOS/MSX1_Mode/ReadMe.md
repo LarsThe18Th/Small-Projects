@@ -9,6 +9,14 @@ Emulates the MSX1 screen in DOS, for running disk-based MSX1 demos on an MSX2 or
 - Set screen 0 Width 40
 - Detect Turbo-r and set it to Z80 Mode
 - Set VDP to 50Hz
-- Loads MSX1 color Pallette 
+- Loads MSX1 color Pallette  
+<br>
+<br>
+  
+Note:  
+
+The pallete colors still need a bit of tweaking
+
+
 
 
