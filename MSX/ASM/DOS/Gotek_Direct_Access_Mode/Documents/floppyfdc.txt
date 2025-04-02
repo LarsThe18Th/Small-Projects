@@ -1,0 +1,744 @@
+On Monday 18 December 2000 13:41, you wrote:
+
+> Someone have information on the Turbo-R FDC? (including a datasheet)
+
+The info below is from Henrik Gilvad. He wanted to publish it on a disk 
+magazine, but I'm not sure it ever was. Anyway, I don't think he will mind me 
+posting it here.
+
+Bye,
+		Maarten
+
+===========================================================================
+
+Turbo R Floppy Disk Controller informations. Written by Henrik Gilvad.
+----------------------------------------------------------------------
+The Turbo R FDC is in the chip called "TC8566AF" from Toshiba. This chip is
+compatible with the "PD765" from NEC. The PD765 have been used in IBM PC's and
+in some homecomputers like the Schneider models. Most of NEC's newer FDC's are
+also register compatible with the "PD765" (like the newer "PD72068").
+
+The FDC actually have its registers spread over 16 locations. The S1990 chip 
+activates the FDC on any location between #7FF2-#7FFB, the S1990 use the rest.
+
+#7FF0   Mapper page used for DOS 2 and diskbasic.
+        00 : DOS2 page 0
+        01 : DOS2 page 1
+        02 : DOS2 page 2
+        03 : Diskbasic
+        04-07: Other rompages which are not used for Floppy purposes.
+
+#7FF1 R DiskChange & HighDensity detect port.
+        bit 0   FD2HD1  High Density detect drive 1 (TP38 on the PCB)
+        bit 1   FD2HD2  ------------------------- 2 (TP37 on the PCB)
+        bit 4   FDCHG1  Disk Change detect on drive 1 (Not on original drive)
+        bit 5   FDCHG2  --------------------------- 2
+        The bits are active low. Other bits are always '0' so you will
+        normally read #33 from this port.
+
+#7FF2 W Motor + LED port.
+        7   6   5   4   3   2   1  0
+        |   |   |   |   |   |   +--+--- Drive select. 0-3 (A-D)
+        |   |   |   |   |   +---------- (0) Reset FDC. (1) Enable FDC
+        |   |   |   |   +-------------- (1) Enable DMA and Interrupt.
+        |   |   |   |                   (Always =0 on Turbo R !)
+        |   |   |   +------------------ Motor Select Drive A. (1=on, 0=off)
+        |   |   +---------------------- --------!!-------- B
+        |   +-------------------------- --------!!-------- C
+        +------------------------------ --------!!-------- D
+        #14 for Drive 0
+        #25 for Drive 1
+        Write #00 to stop both drives and RESET FDC.
+        Write #04 to stop both drives but keep FDC enabled.
+
+#7FF3   ? Some routines writes this sequence to it. [2,3,2]
+        Some writes #20 or #30 to it.
+
+#7FF4   FDC status (R) (Just some guesses because I don't have the datasheets)
+        7   6   5   4   3   2   1   0
+        |   |   |   |   |   |   |   +-- (1) Drive 0 in Seek mode
+        |   |   |   |   |   |   +------ (1) ----- 1 in Seek mode
+        |   |   |   |   |   +---------- (1) ----- 2 in Seek mode (not on TBR)
+        |   |   |   |   +-------------- (1) ----- 3 in Seek mode (not on TBR)
+        |   |   |   +------------------ (1) FDC Busy. Read or Write command
+        |   |   |                           is in process.
+        |   |   +---------------------- (1) Non-DMA Mode. CPU polled transfer.
+        |   +-------------------------- Data (1) To CPU. (0) To FDC.
+        +------------------------------ Request for Master.
+                                        (1) Data register is ready to send or
+                                            receive data.
+        Auxilary Command port (W)
+
+#7FF5   FDC data port (R/W)
+        Used for all data in Command, Execution and Result Phase.
+#7FF6   ? (Not used ?)
+#7FF7   Control register (W).
+        00h = FDC can only read/write 1.44Mbyte disks.
+        01h = FDC can only read/write 720kbyte disks.
+        After a reset the FDC defaults to the normal 720K disks.
+#7FF8-#7FFB ?
+
+The last 4 addresses are not FDC registers and they does not seems to be used 
+in any ROM's.
+
+#7FFC   ? bit 0 can be read and written. bit 1 is always 0.
+#7FFD   ? bit 0-1 can be read and written.
+#7FFE   ? always #FF ?
+#7FFF   ? always #3F ?
+
+
+The FDC have 15 Commands. There are 3 Phases in all commands, they are:
+
+        COMMAND PHASE
+        The FDC receives the 'Command Block' from the CPU.
+
+        EXECUTION PHASE
+        The FDC performs the operation it was instructed to do.
+        This includes transfer of Sector Data etc.
+
+        RESULT PHASE
+        When the operation is finished the CPU must read a 'Status Block'.
+        When this block have been transfered then the FDC should be ready
+        for a new Command, else something must be wrong with the previous
+        communication. (Usually wrong Phase-Lengths) Then it might be
+        nessesary to Reset the FDC and set it up again before the next
+        command.
+
+
+Command Summary:
+----------------
+Com.  Len.  Function            Data            Status   Note
+-----------------------------------------------------------------------------
+x0
+x1      9   Scan Equal          ?               7
+x2      9   Read a Track        All data.       7       In 1 rotation !
+03      3   Specify             none            none    Sets timings
+04      2   Sense Drive Status
+x5      9   Write Sector        Sector(s)*Size  7
+x6      9   Read Sector         Sector(s)*Size  7
+x7      2   Recalibrate                         none    Goto Track 00
+08      1   Sense Seek Status   none            2       (after Seek Commands)
+x9      9   Write Deleted Data  ? (Size + 2 ?)  7
+59      9   Scan Low or Equal   ?               7
+xA      2   Read ID             4 bytes 'CHRN'  7
+xB
+xC      9   Read Deleted Data   ? (Size + 2 ?)  7
+xD      6   Format Track        Sectors*'CHRN'  7
+5D      9   Scan High or Equal  ?               7
+xE
+0F      3   Seek                none            none    Goto Track#.
+-----------------------------------------------------------------------------
+x0, xB and xE are illegal commands. (x means Flags in the upper 3 bits)
+
+
+SYMBOL DESCRIPTIONS:
+--------------------
+C       Cylinder number. (=TRACK)
+D       D stands for the data pattern that is going to be written into a
+        sector
+DTL     Data Length. When N is defined as 00, DTL stands for the data length
+        that users are going to read from or write to the sector.
+EOT     End Of Track. EOT stands for the final sector number on a cylinder.
+GPL     Gap Length. GPL stands for the length of GAP3. (spacing between
+        sectors excluding VCO sync field)
+H       Head address. (0 or 1)
+HD      Head. Head address stored in the 'CHRN' field on disk.
+HLT     Head Load Time. Time from 4 to 512 ms. in 4.ms increments.
+HUT     Head Unload Time. Time from 0 to 480 ms in 32 ms increments.
+MF      FM or MFM mode. We use MFM on MSX. (Therefore MF always = 1 !!!)
+MT      Multi-Track. If MT is high, a multi-track operation is to be performed
+        (A cylinder under both HD0 and HD1 will be read or written.)
+N       Number. N stands for the number of data bytes written in a sector.
+        0 = 128, 1 = 256, 2 = 512, 3 = 1024 bytes/sector.
+NCN     New Cylinder Number.
+ND      Non-DMA Mode. ND=1 because we don't have DMA on MSX.
+PCN     Present Cylinder Number. Stands for cylinder number at the completion
+        of sense-interrupt status command indicating the position of the head
+        at present time.
+R       Record. R stands for the Sector number, which will be read or written.
+R/W     Read/Write. R/W stands for either read (R) or write (W) signal.
+SC      Sector. SC indicates the number of sectors per cylinder.
+SK      Skip. SK stands for 'skip deleted-data address mark.'
+SRT     Step Rate Time. SRT stands for stepping rate for the Drive.
+        2 to 32 ms. in 2 ms increments.
+ST0     Status byte 0
+ST1     Status byte 1
+ST2     Status byte 2
+ST3     Status byte 3
+STP     Scan Test. During a SCAN operation, if STP=1, the data in contiguous
+        sectors is compared byte-by-byte with data sent from the CPU, and if
+        STP=2, then alternate sectors are read and compared.
+US0=US1 Unit Select. Binary number for DRIVE 0-3.
+
+
+COMMANDS DETAILED
+-----------------
+
++----------+
+|Scan Equal|?
++----------+---+--------------------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+--------------------------------+---------------------------+
+|Command   | W | MT  MF  SK   1   0   0   0   1 |Command Codes              |
+|          | W |  X   X   X   X   X  Hd  US1 US0|Head 0/1, Drive 0-3        |
+|          | W |                C               |Cylinder. (Track #)        |
+|          | W |                H               |Head #                     |
+|          | W |                R               |Record. (Sector# like 1-9) |
+|          | W |                N               |Sector Size.0=128, 1=256.. |
+|          | W |               EOT              |Last Sector # on Track     |
+|          | W |               GPL              |GaP 3 Length.              |
+|          | W |               STP              |Scan Test                  |
++----------+---+--------------------------------+---------------------------+
+|Execution      Data compared between the FDC and the CPU. (???)            |
++----------+---+--------------------------------+---------------------------+
+|Result    | R |               ST0              |Status Byte 0              |
+|          | R |               ST1              |Status Byte 1              |
+|          | R |               ST2              |Status Byte 2              |
+|          | R |                C               |Cylinder after execution   |
+|          | R |                H               |Head after execution       |
+|          | R |                R               |Sector after execution     |
+|          | R |                N               |SectorLength               |
++----------+---+--------------------------------+---------------------------+
+
+
++------------+
+|Read a Track|Reads all sectors on track, as the sectors passes by.
++----------+-+-+--------------------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+--------------------------------+---------------------------+
+|Command   | W |  0  MF  SK   0   0   0   1   0 |Command Codes              |
+|          | W |  X   X   X   X   X  Hd  US1 US0|Head 0/1, Drive 0-3        |
+|          | W |                C               |Cylinder. (Track #)        |
+|          | W |                H               |Head #                     |
+|          | W |                R               |Record. (Sector# like 1-9) |
+|          | W |                N               |Sector Size.0=128, 1=256.. |
+|          | W |               EOT              |Last Sector # on Track     |
+|          | W |               GPL              |GaP 3 Length.              |
+|          | W |               DTL              |DaTaLength                 |
++----------+---+--------------------------------+---------------------------+
+|Execution | R |CPU reads all data between Index hole and EOT               |
++----------+---+--------------------------------+---------------------------+
+|Result    | R |               ST0              |Status Byte 0              |
+|          | R |               ST1              |Status Byte 1              |
+|          | R |               ST2              |Status Byte 2              |
+|          | R |                C               |Cylinder after execution   |
+|          | R |                H               |Head after execution       |
+|          | R |                R               |Sector after execution     |
+|          | R |                N               |SectorLength               |
++----------+---+--------------------------------+---------------------------+
+Note: Only DATA in the Sectors are transferred !
+Note2:If interleave is 1/6/2/7/3/8/4/9/5 or other different from 1-9 then the
+      sectors will be read in that order. (1 rotation)
+      It gives faster copy on non '1-9' interleaves but is more difficult if
+      errors occur.
+
++----------+
+|Specify   |Set timings etc.
++----------+---+--------------------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+----------------+---------------+---------------------------+
+|Command   | W |  0   0   0   0 | 0   0   1   1 |Command Codes              |
+|          | W |  STEP RATE TIME|Head UnloadTime|SRT:2-32ms. HUT 0-480ms.   |
+|          | W |  Head Load Time            | ND|ND:1=Non Dma. HLT:4-512    |
++----------+---+----------------------------+---+---------------------------+
+|Execution      No data                                                     |
++---------------------------------------------------------------------------+
+|Result         No result                                                   |
++---------------------------------------------------------------------------+
+Note: Use #03,#DF,#03 on Turbo R.
+
++------------------+
+|Sense Drive Status|Write Protected ?. And more flags.
++----------+---+---+----------------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+--------------------------------+---------------------------+
+|Command   | W |  0   0   0   0   0   1   0   0 |Command Codes              |
+|          | W |  X   X   X   X   X  Hd  US1 US0|Head 0/1, Drive 0-3        |
++----------+---+--------------------------------+---------------------------+
+|Execution      No data                                                     |
++----------+---+--------------------------------+---------------------------+
+|Result    | R |    Status byte 3               | Status about Floppy Drive |
++----------+---+--------------------------------+---------------------------+
+
+
++------------+
+|Write Sector|Writes 1 or more sectors.
++----------+-+-+--------------------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+--------------------------------+---------------------------+
+|Command   | W | MT  MF   0   0   0   1   0   1 |Command Codes              |
+|          | W |  X   X   X   X   X  Hd  US1 US0|Head 0/1, Drive 0-3        |
+|          | W |                C               |Cylinder. (Track #)        |
+|          | W |                H               |Head #                     |
+|          | W |                R               |Record. (Sector# like 1-9) |
+|          | W |                N               |Sector Size.0=128, 1=256.. |
+|          | W |               EOT              |Last Sector # on Track     |
+|          | W |               GPL              |GaP 3 Length.              |
+|          | W |               DTL              |DaTaLength                 |
++----------+---+--------------------------------+---------------------------+
+|Execution | W |CPU transfers new sector data   |                           |
++----------+---+--------------------------------+---------------------------+
+|Result    | R |               ST0              |Status Byte 0              |
+|          | R |               ST1              |Status Byte 1              |
+|          | R |               ST2              |Status Byte 2              |
+|          | R |                C               |Cylinder after execution   |
+|          | R |                H               |Head after execution       |
+|          | R |                R               |Sector after execution     |
+|          | R |                N               |SectorLength               |
++----------+---+--------------------------------+---------------------------+
+
+
++------------+
+|Read Sector |Reads 1 or more sectors.
++----------+-+-+--------------------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+--------------------------------+---------------------------+
+|Command   | W | MT  MF  SK   0   0   1   1   0 |Command Codes              |
+|          | W |  X   X   X   X   X  Hd  US1 US0|Head 0/1, Drive 0-3        |
+|          | W |                C               |Cylinder. (Track #)        |
+|          | W |                H               |Head #                     |
+|          | W |                R               |Record. (Sector# like 1-9) |
+|          | W |                N               |Sector Size.0=128, 1=256.. |
+|          | W |               EOT              |Last Sector # on Track     |
+|          | W |               GPL              |GaP 3 Length.              |
+|          | W |               DTL              |DaTaLength                 |
++----------+---+--------------------------------+---------------------------+
+|Execution | R |CPU reads all sector data       |                           |
++----------+---+--------------------------------+---------------------------+
+|Result    | R |               ST0              |Status Byte 0              |
+|          | R |               ST1              |Status Byte 1              |
+|          | R |               ST2              |Status Byte 2              |
+|          | R |                C               |Cylinder after execution   |
+|          | R |                H               |Head after execution       |
+|          | R |                R               |Sector after execution     |
+|          | R |                N               |SectorLength               |
++----------+---+--------------------------------+---------------------------+
+
++-----------+
+|Recalibrate|Moves head to Track 00
++----------++--+--------------------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+--------------------------------+---------------------------+
+|Command   | W |  0   0   0   0   0   1   1   1 |Command Codes              |
+|          | W |  X   X   X   X   X   0  US1 US0|Drive 0-3                  |
++----------+---+--------------------------------+---------------------------+
+|Execution      No data                                                     |
++---------------------------------------------------------------------------+
+|Result         No result phase                                             |
++---------------------------------------------------------------------------+
+After this command then bit 0 (drive 0),1 (drive 1),2 (drive 2) or 3 (drive 
+3) 
+will be set to indicate that the CPU should send a 'Senes Interrupt Status 
+(08)' to see when the command is finished.
+
++----------------------+
+|Sense Interrupt Status|(After SEEK commands)
++----------+---+-------+------------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+--------------------------------+---------------------------+
+|Command   | W |  0   0   0   0   1   0   0   0 |Command Codes              |
++----------+---+--------------------------------+---------------------------+
+|Execution      No data                                                     |
++----------+---+------------------------------------------------------------+
+|Result    | R |           ST0                  |Status Byte 0              |
+|          | R |           PCN                  |Present Cylinder Number    |
++----------+---+------------------------------------------------------------+
+Bit5 in ST0 is set to '1' when the SEEK operation have ended.
+Bit6 is set to '1' if TRACK00 was not met during a certain amount of steps.
+     This means that the drive is missing or defect.
+
+
++-------------------------+
+|Write Sector Deleted Data|(It seems that the CPU must write 2 bytes extra?)
++----------+---+----------+---------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+--------------------------------+---------------------------+
+|Command   | W | MT  MF   0   0   1   0   0   1 |Command Codes              |
+|          | W |  X   X   X   X   X  Hd  US1 US0|Head 0/1, Drive 0-3        |
+|          | W |                C               |Cylinder. (Track #)        |
+|          | W |                H               |Head #                     |
+|          | W |                R               |Record. (Sector# like 1-9) |
+|          | W |                N               |Sector Size.0=128, 1=256.. |
+|          | W |               EOT              |Last Sector # on Track     |
+|          | W |               GPL              |GaP 3 Length.              |
+|          | W |               DTL              |DaTaLength                 |
++----------+---+--------------------------------+---------------------------+
+|Execution | W |CPU transfers new sector data   |                           |
++----------+---+--------------------------------+---------------------------+
+|Result    | R |               ST0              |Status Byte 0              |
+|          | R |               ST1              |Status Byte 1              |
+|          | R |               ST2              |Status Byte 2              |
+|          | R |                C               |Cylinder after execution   |
+|          | R |                H               |Head after execution       |
+|          | R |                R               |Sector after execution     |
+|          | R |                N               |SectorLength               |
++----------+---+--------------------------------+---------------------------+
+
+
++------------------+
+|Scan Low or Equal |'Data compared between the FDD and main system' ?
++----------+---+---+----------------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+--------------------------------+---------------------------+
+|Command   | W | MT  MF  SK   1   1   0   0   1 |Command Codes              |
+|          | W |  X   X   X   X   X  Hd  US1 US0|Head 0/1, Drive 0-3        |
+|          | W |                C               |Cylinder. (Track #)        |
+|          | W |                H               |Head #                     |
+|          | W |                R               |Record. (Sector# like 1-9) |
+|          | W |                N               |Sector Size.0=128, 1=256.. |
+|          | W |               EOT              |Last Sector # on Track     |
+|          | W |               GPL              |GaP 3 Length.              |
+|          | W |               STP              |DaTaLength                 |
++----------+---+--------------------------------+---------------------------+
+|Execution | ? |'Data compared between thq FDD and main system' ?           |
++----------+---+--------------------------------+---------------------------+
+|Result    | R |               ST0              |Status Byte 0              |
+|          | R |               ST1              |Status Byte 1              |
+|          | R |               ST2              |Status Byte 2              |
+|          | R |                C               |Cylinder after execution   |
+|          | R |                H               |Head after execution       |
+|          | R |                R               |Sector after execution     |
+|          | R |                N               |SectorLength               |
++----------+---+--------------------------------+---------------------------+
+
+
++--------+
+|Read ID |Read next 'CHRN' field
++--------+-+---+--------------------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+--------------------------------+---------------------------+
+|Command   | W |  0  MF   0   0   1   0   1   0 |Command Codes              |
+|          | W |  X   X   X   X   X  Hd  US1 US0|Head 0/1, Drive 0-3        |
++----------+---+--------------------------------+---------------------------+
+|Execution |   |The first correct ID block is stored in the 'Result'        |
++----------+---+--------------------------------+---------------------------+
+|Result    | R |               ST0              |Status Byte 0              |
+|          | R |               ST1              |Status Byte 1              |
+|          | R |               ST2              |Status Byte 2              |
+|          | R |                C               |Cylinder after execution   |
+|          | R |                H               |Head after execution       |
+|          | R |                R               |Sector after execution     |
+|          | R |                N               |SectorLength               |
++----------+---+--------------------------------+---------------------------+
+'CHRN' = Track, Head, Sector, Sector length.
+
+
+
++------------------------+
+|Read Sector Deleted Data|(1 sector + 2 bytes extra ?)
++----------+---+---------+----------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+--------------------------------+---------------------------+
+|Command   | W | MT  MF  SK   0   1   1   0   0 |Command Codes              |
+|          | W |  X   X   X   X   X  Hd  US1 US0|Head 0/1, Drive 0-3        |
+|          | W |                C               |Cylinder. (Track #)        |
+|          | W |                H               |Head #                     |
+|          | W |                R               |Record. (Sector# like 1-9) |
+|          | W |                N               |Sector Size.0=128, 1=256.. |
+|          | W |               EOT              |Last Sector # on Track     |
+|          | W |               GPL              |GaP 3 Length.              |
+|          | W |               DTL              |DaTaLength                 |
++----------+---+--------------------------------+---------------------------+
+|Execution | R |CPU reads sector data           |                           |
++----------+---+--------------------------------+---------------------------+
+|Result    | R |               ST0              |Status Byte 0              |
+|          | R |               ST1              |Status Byte 1              |
+|          | R |               ST2              |Status Byte 2              |
+|          | R |                C               |Cylinder after execution   |
+|          | R |                H               |Head after execution       |
+|          | R |                R               |Sector after execution     |
+|          | R |                N               |SectorLength               |
++----------+---+--------------------------------+---------------------------+
+
+
+
++-------------+
+|Format Track |Formats all sectors on 1 Track/Side.
++----------+--++--------------------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+--------------------------------+---------------------------+
+|Command   | W |  0  MF   0   0   1   1   0   1 |Command Codes              |
+|          | W |  X   X   X   X   X  Hd  US1 US0|Head 0/1, Drive 0-3        |
+|          | W |                N               |Bytes/Sector (2=512)       |
+|          | W |                SC              |Sectors/Track              |
+|          | W |                GPL             |Gap 3 size                 |
+|          | W |                D               |Fill sectordata with 'D'   |
++----------+---+--------------------------------+---------------------------+
+|Execution | W |CPU transfers 'SC' * 'CHRN' data                            |
++----------+---+--------------------------------+---------------------------+
+|Result    | R |               ST0              |Status Byte 0              |
+|          | R |               ST1              |Status Byte 1              |
+|          | R |               ST2              |Status Byte 2              |
+|          | R |                C               |Cylinder after execution   |
+|          | R |                H               |Head after execution       |
+|          | R |                R               |Sector after execution     |
+|          | R |                N               |SectorLength               |
++----------+---+--------------------------------+---------------------------+
+Execution data example: 00/00/01/02 00/00/02/02 00/00/03/02 00/00/04/02
+                        00/00/05/02 00/00/06/02 00/00/07/02 00/00/08/02
+                        00/00/09/02
+
+
++------------------+
+|Scan High or Equal|'Data compared between the FDD and main system' ?
++----------+---+---+----------------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+--------------------------------+---------------------------+
+|Command   | W | MT  MF  SK   1   1   1   0   1 |Command Codes              |
+|          | W |  X   X   X   X   X  Hd  US1 US0|Head 0/1, Drive 0-3        |
+|          | W |                C               |Cylinder. (Track #)        |
+|          | W |                H               |Head #                     |
+|          | W |                R               |Record. (Sector# like 1-9) |
+|          | W |                N               |Sector Size.0=128, 1=256.. |
+|          | W |               EOT              |Last Sector # on Track     |
+|          | W |               GPL              |GaP 3 Length.              |
+|          | W |               STP              |DaTaLength                 |
++----------+---+--------------------------------+---------------------------+
+|Execution | ? |'Data compared between the FDD and main system' ?           |
++----------+---+--------------------------------+---------------------------+
+|Result    | R |               ST0              |Status Byte 0              |
+|          | R |               ST1              |Status Byte 1              |
+|          | R |               ST2              |Status Byte 2              |
+|          | R |                C               |Cylinder after execution   |
+|          | R |                H               |Head after execution       |
+|          | R |                R               |Sector after execution     |
+|          | R |                N               |SectorLength               |
++----------+---+--------------------------------+---------------------------+
+
+
+
++----------+
+|Seek Track|Move head to Track#.
++----------+---+--------------------------------+---------------------------+
+|Phase     |R/W| D7  D6  D5  D4  D3  D2  D1  D0 | Remarks                   |
++----------+---+--------------------------------+---------------------------+
+|Command   | W |  0   0   0   0   1   1   1   1 |Command Codes              |
+|          | W |  x   x   x   x   x  HD  US1 US0|Head0/1, Drive 0-3         |
+|          | W |               NCN              |New Cylinder Number (Track)|
++----------+---+--------------------------------+---------------------------+
+|Execution      No data                                                     |
++---------------------------------------------------------------------------+
+|Result         No result phase                                             |
++---------------------------------------------------------------------------+
+After this command then bit 0,1,2 or 3 will be set to indicate that the CPU
+should send a 'Senes Interrupt Status (08)' to see when the movement is
+finished.
+
+
+
+
+COMMAND STATUS REGISTER's (Result Phase return data)
+----------------------------------------------------
+
+ST0
+---
+b7 b6 b5 b4 b3 b2 b1 b0
+|  |  |  |  |  |  +--+- Unit Select. Drive Select 0-3
+|  |  |  |  |  +------- Head Address. Head 0 or 1.
+|  |  |  |  +---------- Not Ready.
+|  |  |  |              Set if Drive goes 'Not Ready'
+|  |  |  +------------- Equipment Check.
+|  |  |                 Set if Track00 is not met with the "Recalibrate" CMD.
+|  |  +---------------- Seek End. Set when the FDC completes the SEEK cmd.
++--+------------------- Interrupt code.
+                        0 0 : Normal Termination of command.
+                        0 1 : Abnormal Termination of command. (Not completed)
+                        1 0 : Invalid command issue. (Never started)
+                        1 1 : Abnormal Termination because the Drive's Ready
+                              signal changed during command execution.
+
+
+ST1
+---
+b7 b6 b5 b4 b3 b2 b1 b0
+|  |  |  |  |  |  |  +- Missing Address Mark.
+|  |  |  |  |  |  +---- Not Writable. (Due to Write Protect signal from drive)
+|  |  |  |  |  +------- No Data. (1) if FDC cannot find specified sector.
+|  |  |  |  |           (During ReadSector, WriteDeletedData or Scan commands)
+|  |  |  |  +---------- 0
+|  |  |  +------------- OverRun. (1) if the CPU did not read data fast enough.
+|  |  +---------------- Data Error. (1) if FDC detects "CRC error"
+|  +------------------- 0
++---------------------- End of cylinder. (1) if FDC tried to access a sector
+                        beyond the final sector of a cylinder.
+
+ST2
+---
+b7 b6 b5 b4 b3 b2 b1 b0
+|  |  |  |  |  |  |  +- Missing Address Mark in data field
+|  |  |  |  |  |  +---- Bad Cylinder. (Wrong Cylinder number)
+|  |  |  |  |  +------- Scan Not Satisfied. If a SCAN cmd cannot find a sector
+|  |  |  |  +---------- Scan Equal Hit. Set if the SCAN condition was met.
+|  |  |  +------------- Wrong Cylinder. Set when Cylinder# is wrong.
+|  |  +---------------- Data Error in Data Field. (1) when CRC error in data.
+|  +------------------- Control Mark. (1) if 'Deleted Data Adr.Mark' was found
++---------------------- 0
+
+
+ST3
+---
+b7 b6 b5 b4 b3 b2 b1 b0
+|  |  |  |  |  |  +--+- Unit select 0-3
+|  |  |  |  |  +------- Head Address
+|  |  |  |  +---------- Two Side. Status from TwoSide signal from drive.
+|  |  |  |              (Always '0' on Turbo R ?)
+|  |  |  +------------- Track0. Status from current drive TRK00 detector.
+|  |  +---------------- Ready. Status from current drive Ready.
+|  +------------------- Write Protected. (1) when disk is writeprotected.
++---------------------- Fault. Status from Fault Signal from drive.
+                        (Always '0' on Turbo R ?)
+
+
+
+
+
+The Turbo R Diskbios have a workspace area. The base of this is stored at 
+(#FD09 + PS * 16 + SS * 4 + 1) (Word)
+IX is used to point to this area.
+
+IX+00h  -  IX+09H ?
+
+IX + 0Ah Command Block byte 1
+IX + 0Bh ------------------ 2
+IX + 0Ch ------------------ 3
+IX + 0Dh ------------------ 4
+IX + 0Eh ------------------ 5
+IX + 0Fh ------------------ 6
+IX + 10h ------------------ 7
+IX + 11h ------------------ 8
+IX + 12h ------------------ 9
+
+IX + 13h used to store Status block byte 1
+IX + 14h ------------------------------- 2
+IX + 15h ------------------------------- 3
+IX + 16h ------------------------------- 4
+IX + 17h ------------------------------- 5
+IX + 18h ------------------------------- 6
+IX + 19h ------------------------------- 7
+
+
+
+In DOS 2 I have found these routines in the DiskRom page 0:
+
+#7824   The FORMAT TEXT
+#785D   SCF:RET
+#785F   LD A,#20:JR #786D
+#7863   LD A,#30:JR #786D
+#7867   LD A,#04                ;Motor Off, FDC (still) on.
+        LD (#7FF2),A
+        RET
+#786D   LD (#7FF3),A            ;? I don't know the function of this port.
+        RET
+#7871   A routine to read a sector. (A Verify sector routine ?)
+        The Command Block must have been set up and the Drive and Motor
+        selected.
+#78AE   Used to increament Cylinder, Sector, Head to the next Abs.Sector.
+        (Including STEP operation)
+#78DF   SEEK to track 6, Recalibrate, SEEK Track 'C-reg'
+#7921   SEND COMMAND BLOCK !!! (IX + 0AH) is the start, B = # of bytes.
+                First it waits until (#7FF4 bit 4) = 0 (Busy flag)
+                Then it sends the ComBlk
+#7955   Waits until (7FF4 bit 4) = 0
+        Calls the SENSE INTERRUPT routine.
+        Repeats this until bit 5 of StatusByte0 is set. (Seek End)
+        Returns NC if okay, else Cy set if error was rapported.
+        (Used by SEEK and RECALIBRATE commands)
+#796B   Send "SENSE INTERRUPT STATUS" command block
+        Calls the "GET STATUS BLOCK" and return.
+#797B   "GET STATUS BLOCK" to (IX+13h) ... as long as there are bytes.
+#7993   A delay which much probably be runned under 3.5MHz !
+#799C   Sends 2->(7FF3) ?
+        Sends 3->(7FF3)
+        Sends 2->(7FF3)
+#79AB   No hardware access but it looks at 2.nd byte in the Status Block
+        If bit 2 is set then A=8:RET    'Record not found'
+        If bit 5 is set then A=4:RET    'Data (CRC) error'
+        else A=0Ch: RET                 'Other error'
+        (Translation into BIOS error codes)
+#79BB   READ SECTOR.
+        Data is read to where HL points.
+
+        Send ComBlk (7921)
+        Read 512 bytes
+        CALL #799C
+        CALL #797B
+#79FC
+
+
+
+THESE ADDRESSES ARE IN THE A1GT DISKROM !!! Perhaps they are different in the 
+A1ST rom ?
+
+Please only use them to see how to send commands, transfer data, receive 
+status block etc.
+
+
+Here is an example on how to read a sector. When calling this routine the 
+head 
+must have been placed over the correct cylinder, the motor must be on and the 
+drive selected.
+
+RdSec:  LD IX,ComBlk
+        LD HL,SectorBuffer      ;Where to put data
+        CALL SendCom
+        LD DE,#7FF4
+        LD B,0
+RdSec1: LD A,(DE)               ;Reads the first 256 bytes.
+        ADD A,A
+        JR NC,RdSec1            ;Jump if StatusReg bit7 was 0.
+        ADD A,A
+        JP P,RdErr              ;End if StatusReg bit5 was 0.
+        LD A,(#7FF5)
+        LD (HL),A
+        INC HL
+        DJNZ RdSec1
+RdSec2: LD A,(DE)               ;Reads the next 256 bytes
+        ADD A,A
+        JR NC,RdSec2            ;Jump if StatusReg bit7 was 0.
+        ADD A,A
+        JP P,RdErr              ;End if StatusReg bit5 was 0.
+        LD A,(#7FF5)
+        LD (HL),A
+        INC HL
+        DJNZ RdSec1
+RdSec3: LD A,2
+        LD (#7FF3),A
+        INC A
+        LD (#7FF3),A
+        NOP
+        DEC A
+        LD (#7FF3),A
+        CALL GetStaBlk  ;Read StatusBlock
+        RET
+RdErr:  ;Do a delay. (3.579545 MHz version ! Rewrite it for R800 if needed)
+        LD BC,#07A8
+RdErr2: DEC BC
+        LD A,B
+        OR C
+        JR NZ,RdErr2
+        JR RdSec3
+
+ComBlk: DB #46  ;READ SECTOR
+        DB #00  ;Head 0, Drive 0
+        DB #00  ;Cylinder.      (Track #)
+        DB #00  ;Head number.   (H)
+        DB #01  ;Record number. (Sector number)
+        DB #02  ;Sector Size.   (2 = 512 bytes)
+        DB #09  ;End Of Track.  (Last sector on track)
+        DB #20  ;GPL.           (Gap3 length, minimum)
+        DB #FF  ;DTL <> 0
+
+
+I will probably put a GEN file together with this text on the disk. I have 
+made a simple Basic program which displays 'CHRN' from disks.
+
+There is 1 thing that I really miss in the FDC. That is the ability to see 
+the 
+INDEX HOLE, this is important when I want to get the correct and complete 
+CHRN 
+list for a track. In the currect program I just have to read 18 'CHRN's and 
+then the user must pay attention to the list himself.
+
+HG.
+
+l
