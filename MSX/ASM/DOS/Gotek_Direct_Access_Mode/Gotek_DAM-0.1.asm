@@ -10,9 +10,9 @@
     code @ 100h
 
 
-                in a,(#a8)                        ; Backup current slot
+                in a,(#a8)                        ; Backup current Slot
                 push af
-                ld a,(#ffff)                      ; Backup current SUB slot
+                ld a,(#ffff)                      ; Backup current SUB Slot
                 cpl
                 push af
                 
@@ -25,7 +25,7 @@
 busy:
                 ld a,(#7ff8)                      ; Read STATUS Register
                 and 1                             ; is bit 0 set
-                jr nz,busy                        ; Yes the busy
+                jr nz,busy                        ; Yes then busy
                 
                 ld a,255
                 ld (#7ffb),a                      ; Set destination TRACK in DATA Register
@@ -38,8 +38,8 @@ busy:
 
                 ; Restore Slots
                 pop af
-                ld (#ffff),a                      ; Restore current SUB slot
+                ld (#ffff),a                      ; Restore current SUB Slot
                 pop af
-                out (#a8),a                       ; Restore current slot 
+                out (#a8),a                       ; Restore current Slot 
                 
                 ret
