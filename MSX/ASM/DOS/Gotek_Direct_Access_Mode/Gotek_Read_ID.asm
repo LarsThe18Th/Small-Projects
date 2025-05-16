@@ -10,143 +10,143 @@
     code @ 100h
 
 
-				di
-				; Init FDC
-                		in a,(#a8)						; Backup current Slot
-                		push af
-                		ld a,(#ffff)						; Backup current SUB Slot
-                		cpl
-                		push af
-                
-                		ld a,(#f348)						; Read DiskROM Slot Location
-                		ld h,%01000000						; Set page 1
-                		call #24
+					di
+					; Init FDC
+	                in a,(#a8)							; Backup current Slot
+	                push af
+	                ld a,(#ffff)						; Backup current SUB Slot
+	                cpl
+	                push af
 
-				; Set FDC controller values             		; Is drive BUSY, Read status bit 0
-				ld a,#c4						; Drive A (Bit0), Motor on (Bit7)
-				ld (#7ffd),a						; Set Drive
+	                ld a,(#f348)						; Read DiskROM Slot Location
+	                ld h,%01000000						; Set page 1
+	                call #24
+
+					; Set FDC controller values         ; Is drive BUSY, Read status bit 0
+					ld a,#c4							; Drive A (Bit0), Motor on (Bit7)
+					ld (#7ffd),a						; Set Drive
 
 
-				; Drive Ready
-				ld hl,#7ff8
+					; Drive Ready
+					ld hl,#7ff8
 drive_ready:
-				bit 7,(hl)						; Read status register
-				jr nz,drive_ready					; Drive ready ? (Bit 7 = 0 )
+					bit 7,(hl)							; Read status register
+					jr nz,drive_ready					; Drive ready ? (Bit 7 = 0 )
 
 
-				; Set Track 255
-                		ld a,255
-                		ld (#7ffb),a						; Set destination TRACK in DATA Register
+					; Set Track 255
+					ld a,255
+					ld (#7ffb),a						; Set destination TRACK in DATA Register
 
-				; Seek command
-                		ld a,#1c
-                		ld (#7ff8),a						; Write SEEK command with Verify & Head in COMMAND REGISTER
+					; Seek command
+	                ld a,#1c
+	                ld (#7ff8),a						; Write SEEK command with Verify & Head in COMMAND REGISTER
 
 
-				call fdc_cmd_done
+					call fdc_cmd_done
 				
-				call fdc_drv_busy
+					call fdc_drv_busy
 
 
-				; Read Sector
-				xor a
-				ld (#7ffa),a						; Set Sector register to 0
+					; Read Sector
+					xor a
+					ld (#7ffa),a						; Set Sector register to 0
 
-				ld a,%10000000						; Read Sector command
-				ld de,#9000						; Set Store Memmory adress
-				ld hl,#7fff
+					ld a,%10000000						; Read Sector command
+					ld de,#9000							; Set Store Memmory adress
+					ld hl,#7fff
 
-				ld (#7ff8),a						; Set Read Sector Command
+					ld (#7ff8),a						; Set Read Sector Command
 cmmd_done:
-				bit 6,(hl)						; Is current command done ?
-				jr z,read_done						; Jump if reading is done
+					bit 6,(hl)							; Is current command done ?
+					jr z,read_done						; Jump if reading is done
 
-				bit 7,(hl)	
-				jp nz,cmmd_done						; Ready to read ?
+					bit 7,(hl)	
+					jp nz,cmmd_done						; Ready to read ?
 				
-				ld a,(#7ffb)						; Get read data from data register
-				ld (de),a
-				inc de
-				jr cmmd_done						; Get next byte
+					ld a,(#7ffb)						; Get read data from data register
+					ld (de),a
+					inc de
+					jr cmmd_done						; Get next byte
 
 read_done:
 
-				ld a,(#7ff8)						; Save status resister
-				ld c,a
+					ld a,(#7ff8)						; Save status resister
+					ld c,a
 
 
-				call fdc_drv_busy
+					call fdc_drv_busy
 
 
-				; Restore Track 0
-				xor a								
-				ld (#7ff8),a						; Set Restore Command
+					; Restore Track 0
+					xor a								
+					ld (#7ff8),a						; Set Restore Command
 
 
-				call fdc_cmd_done
+					call fdc_cmd_done
 
 
-				; Restore Slots
-				pop af
-                		ld (#ffff),a						; Restore current SUB Slot
-                		pop af
-                		out (#a8),a						; Restore current Slot 
+					; Restore Slots
+					pop af
+                	ld (#ffff),a						; Restore current SUB Slot
+                	pop af
+                	out (#a8),a							; Restore current Slot 
 
 				
-				ld de,default_msg					; Load default text
+					ld de,default_msg					; Load default text
 
-				ld a,c
-				and a				
-				jr nz,prnt_msg						; No rerror ? (0)
+					ld a,c
+					and a				
+					jr nz,prnt_msg						; No rerror ? (0)
 
 
-				; Prepare ID strings
-				ld b,2
-				ld hl,#9000
-				ld de,drive_id
+					; Prepare ID strings
+					ld b,2
+					ld hl,#9000
+					ld de,drive_id
 
 read_next:
-				ld a,(hl)
-				and a	
-				jr z,zero_term
-				ld (de),a
-				inc hl
-				inc de
-				jr read_next
+					ld a,(hl)
+					and a	
+					jr z,zero_term
+					ld (de),a
+					inc hl
+					inc de
+					jr read_next
 
 zero_term:
-				inc hl
-				ld de,soft_ver
-				djnz read_next
+					inc hl
+					ld de,soft_ver
+					djnz read_next
 
-				ld de,id_string
+					ld de,id_string
 
 
-				; Printing results
+					; Printing results
 prnt_msg:
 
-				ld c,9							; Print String to screen
-				call 5
+					ld c,9								; Print String to screen
+					call 5
 
-				ei
-				ret
+					ei
+					ret
 
 ; -----------------------------------------------------------------------
 
 fdc_cmd_done:
-				ld hl,#7fff
+					ld hl,#7fff
 not_done:
-				bit 6,(hl)
-				jr nz,not_done						; Wait until current command is done
-				ret
+					bit 6,(hl)
+					jr nz,not_done						; Wait until current command is done
+					ret
 
 
 fdc_drv_busy:
-				ld hl,#7ff8
+					ld hl,#7ff8
 drv_busy:
-				bit 0,(hl)						; Read status register
-				jr nz,drv_busy						; Drive busy ? (Bit 0 = 0 )
-				ret
+					bit 0,(hl)							; Read status register
+					jr nz,drv_busy						; Drive busy ? (Bit 0 = 0 )
+					ret
 
 ; -----------------------------------------------------------------------
 
