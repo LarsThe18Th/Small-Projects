@@ -151,17 +151,13 @@ drv_busy:
 ; -----------------------------------------------------------------------
 
 default_msg:	db "No Gotek Found",10,13,"$"
-
-id_string:	db 10,13
-		db "ID:  "
-drive_id:	db "        "
-		db 10,13
-		db "Ver: "
-
-soft_ver:	db "            "
-
-		db 10,13,"$"
-
+id_string:		db 10,13
+				db "ID:  "
+drive_id:		db "        "
+				db 10,13
+				db "Ver: "
+soft_ver:		db "            "
+				db 10,13,"$"
 end_default_msg:
 
 
