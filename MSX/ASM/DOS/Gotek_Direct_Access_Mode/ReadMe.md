@@ -13,7 +13,7 @@ Example tool that reads ID and Firmware version from the Gotek in Direct Access 
 <br>
 
  
-### Do not use this tool with real floppy drives, the head knocking could misalign the heads of the drive. Use at your own risk !!!. 
+### Do not use this tool with real floppy drives, the head knocking could misalign the heads of the drive.<br>Use at your own risk !!!. 
 
 <br>
 
