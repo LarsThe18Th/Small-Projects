@@ -12,36 +12,35 @@
 
 				di
 				; Init FDC
-                in a,(#a8)							; Backup current Slot
-                push af
-                ld a,(#ffff)						; Backup current SUB Slot
-                cpl
-                push af
+                		in a,(#a8)						; Backup current Slot
+                		push af
+                		ld a,(#ffff)						; Backup current SUB Slot
+                		cpl
+                		push af
                 
-                ld a,(#f348)						; Read DiskROM Slot Location
-                ld h,%01000000						; Set page 1
-                call #24
+                		ld a,(#f348)						; Read DiskROM Slot Location
+                		ld h,%01000000						; Set page 1
+                		call #24
 
-				; Set FDC controller values
-                ; Is drive BUSY, Read status bit 0
-				ld a,#c4							; Drive A (Bit0), Motor on (Bit7)
+				; Set FDC controller values             		; Is drive BUSY, Read status bit 0
+				ld a,#c4						; Drive A (Bit0), Motor on (Bit7)
 				ld (#7ffd),a						; Set Drive
 
 
 				; Drive Ready
 				ld hl,#7ff8
 drive_ready:
-				bit 7,(hl)							; Read status register
+				bit 7,(hl)						; Read status register
 				jr nz,drive_ready					; Drive ready ? (Bit 7 = 0 )
 
 
 				; Set Track 255
-                ld a,255
-                ld (#7ffb),a						; Set destination TRACK in DATA Register
+                		ld a,255
+                		ld (#7ffb),a						; Set destination TRACK in DATA Register
 
 				; Seek command
-                ld a,#1c
-                ld (#7ff8),a						; Write SEEK command with Verify & Head in COMMAND REGISTER
+                		ld a,#1c
+                		ld (#7ff8),a						; Write SEEK command with Verify & Head in COMMAND REGISTER
 
 
 				call fdc_cmd_done
@@ -54,12 +53,12 @@ drive_ready:
 				ld (#7ffa),a						; Set Sector register to 0
 
 				ld a,%10000000						; Read Sector command
-				ld de,#9000							; Set Store Memmory adress
+				ld de,#9000						; Set Store Memmory adress
 				ld hl,#7fff
 
 				ld (#7ff8),a						; Set Read Sector Command
 cmmd_done:
-				bit 6,(hl)							; Is current command done ?
+				bit 6,(hl)						; Is current command done ?
 				jr z,read_done						; Jump if reading is done
 
 				bit 7,(hl)	
@@ -89,9 +88,9 @@ read_done:
 
 				; Restore Slots
 				pop af
-                ld (#ffff),a						; Restore current SUB Slot
-                pop af
-                out (#a8),a							; Restore current Slot 
+                		ld (#ffff),a						; Restore current SUB Slot
+                		pop af
+                		out (#a8),a						; Restore current Slot 
 
 				
 				ld de,default_msg					; Load default text
@@ -126,7 +125,7 @@ zero_term:
 				; Printing results
 prnt_msg:
 
-				ld c,9								; Print String to screen
+				ld c,9							; Print String to screen
 				call 5
 
 				ei
@@ -145,7 +144,7 @@ not_done:
 fdc_drv_busy:
 				ld hl,#7ff8
 drv_busy:
-				bit 0,(hl)							; Read status register
+				bit 0,(hl)						; Read status register
 				jr nz,drv_busy						; Drive busy ? (Bit 0 = 0 )
 				ret
 
@@ -153,15 +152,15 @@ drv_busy:
 
 default_msg:	db "No Gotek Found",10,13,"$"
 
-id_string:		db 10,13
+id_string:	db 10,13
 				db "ID:  "
-drive_id:		db "        "
+drive_id:	db "        "
 				db 10,13
 				db "Ver: "
 
-soft_ver:		db "            "
+soft_ver:	db "            "
 
-				db 10,13,"$"
+		db 10,13,"$"
 
 end_default_msg:
 
