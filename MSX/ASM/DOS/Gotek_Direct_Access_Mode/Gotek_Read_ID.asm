@@ -3,7 +3,7 @@
 ; (Used in e.g. Philips NMS 82xx MSX Computers)
 
 
-    output gotek.com
+    output Gotek_ID.com
 
     defpage 0,100h
     page 0
@@ -22,7 +22,7 @@
 			ld h,%01000000				; Set page 1
 			call #24
 
-			; Set FDC controller values		; Is drive BUSY, Read status bit 0
+			; Set FDC controller values
 			ld a,#c4				; Drive A (Bit0), Motor on (Bit7)
 			ld (#7ffd),a				; Set Drive
 
