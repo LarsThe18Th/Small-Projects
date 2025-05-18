@@ -11,59 +11,59 @@
 	code @ 100h
 
 main:
-		ld a,(#0080)				;Get command line input Length 
-		ld de,info					;Set info message
-		or a						;if commandline input length = 0
-		jp z,print					;Print info message
+			ld a,(#0080)			;Get command line input Length 
+			ld de,info			;Set info message
+			or a				;if commandline input length = 0
+			jp z,print			;Print info message
 
-		xor a						;Slot 0 (Not Expanded)
-		ld iy,(#fcc0)				;Inter-SlotCall
-		ld ix,#0c					;BIOS CALL
-		ld hl,#2d					;Read value of $2d in slot 0 (BIOS)
-		call $1c
+			xor a				;Slot 0 (Not Expanded)
+			ld iy,(#fcc0)			;Inter-SlotCall
+			ld ix,#0c			;BIOS CALL
+			ld hl,#2d			;Read value of $2d in slot 0 (BIOS)
+			call $1c
 
-		sub 3						;Test if Turbo-r
-		jp z,foundtr
-			ld de,notr
-			jp print
+			sub 3				;Test if Turbo-r
+			jp z,foundtr
+				ld de,notr
+				jp print
 
 foundtr:
-		;Get current CPU state
-		ld iy,(#fcc0)				;Inter-SlotCall
-		ld ix,#0183					;BIOS CALL GETCPU
-		call $1c		
-		ld b,a
-		ld a,(#0082)				;Get command line input 
-		sub #30
+			;Get current CPU state
+			ld iy,(#fcc0)			;Inter-SlotCall
+			ld ix,#0183			;BIOS CALL GETCPU
+			call $1c		
+			ld b,a
+			ld a,(#0082)			;Get command line input 
+			sub #30
 		
-		cp b						;Test mode
-		jp nz,currcpu
-			ld de,equalmode
-			jp print	
+			cp b				;Test mode
+			jp nz,currcpu
+				ld de,equalmode
+				jp print	
 
-		;Test if commandline input is 0,1,2
+			;Test if commandline input is 0,1,2
 currcpu:		
-		cp 0
+			cp 0
 			jp z,legitchar
-		cp 1
+			cp 1
 			jp z,legitchar
-		cp 2
+			cp 2
 			jp z,legitchar
 		
-		ld de,info 
+			ld de,info 
 			jp print
 		
 legitchar:
-		or 128						;Update Turbo Led
+			or 128				;Update Turbo Led
 
-		ld iy,(#fcc0)				;Inter-SlotCall
-		ld ix,#0180					;BIOS CALL CHGCPU
-		call $1c	
-		ld de,newmode
+			ld iy,(#fcc0)			;Inter-SlotCall
+			ld ix,#0180			;BIOS CALL CHGCPU
+			call $1c	
+			ld de,newmode
 print:
-		ld c,9						;Print text with textpointer de
-		call 5
-		ret
+			ld c,9				;Print text with textpointer de
+			call 5
+			ret
 
 ;------------------------------------------------
 info:
@@ -85,4 +85,4 @@ nametag:
 		dw #614C,#7372,#5420,#6568,#3120,#5438,#2068
 		db "(c)2014"
 	
-	end
+end

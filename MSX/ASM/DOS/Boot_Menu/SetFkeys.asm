@@ -17,8 +17,8 @@ nametag:
 begin:
 
 				;Restore function keys
-				ld iy,(#fcc0)						;Inter-SlotCall 
-				ld ix,#3e							;BIOS CALL Restore Fkeys
+				ld iy,(#fcc0)				;Inter-SlotCall
+				ld ix,#3e				;BIOS CALL Restore Fkeys
 				call #1c
 
 ending:
