@@ -1,4 +1,4 @@
-## The Maze of Galious Password Generator 0.25 (Final)
+## The Maze of Galious Password Generator 0.26 (Béta)
 <br/><br/>
 
 Version 0.22:
@@ -15,6 +15,10 @@ Version 0.24:
 
 Version 0.25: (Final)
 - Put code on clipboard if clicked.
+
+Version 0.26: (Béta)
+- Solved a few critical bugs.
+- Changed layout to look more like the in-game item menu.
   
 <br/><br/><br/>
 Note:
