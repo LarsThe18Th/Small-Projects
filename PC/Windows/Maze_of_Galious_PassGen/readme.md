@@ -3,10 +3,10 @@
   
 Version 0.26: (Béta)
 - Solved a few critical bugs. (World 10 status & Active Player)
-- Changed layout to look more like the in-game item menu.
-
+- Changed layout to look more like the in-game item menu.<br/><br/>
+  
 Version 0.25: (Final)
-- Put code on clipboard if clicked.
+- Put code on clipboard if clicked.<br/><br/>
   
 Version 0.24:
 - Change order of world items to, Holy Water, Cape, Rod,Map on Form.
