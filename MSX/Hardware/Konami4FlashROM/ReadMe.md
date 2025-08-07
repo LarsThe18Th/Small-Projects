@@ -11,7 +11,7 @@ the switch disables the FlashROM, allowing it to be reprogrammed.
 ### - Schematics -
 I have drawn the following diagram for the correct wiring.<br/><br/>
 
-![Konami4FlahRom](Konami4FlahROMSchematics.jpg "Konami 4 FlahROM")
+![Konami4FlahRomSchematics](Konami4FlahROMSchematics.jpg "Konami 4 FlahROM Schematics")
 <br/><br/>
 
 ![Konami4FlahRom](Konami4FlahROMSchematics.jpg "Konami 4 FlahROM")
