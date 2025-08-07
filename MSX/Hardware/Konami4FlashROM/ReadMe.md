@@ -11,9 +11,7 @@ the switch disables the FlashROM, allowing it to be reprogrammed.
 ### - Schematics -
 I have drawn the following diagram for the correct wiring.<br/><br/>
 
-![Konami4FlahRomSchematics](MSX/Hardware/Konami4FlashROM/Konami4FlahROMSchematics.jpg "Konami 4 FlahROM Schematics")
+![Konami4FlahRomSchematics](https://github.com/LarsThe18Th/Small-Projects/blob/master/MSX/Hardware/Konami4FlashROM/Konami4FlahROMSchematics.jpg "Konami 4 FlahROM Schematics")
 <br/><br/>
 
-![Konami4FlahRom](Konami4FlahROMSchematics.jpg "Konami 4 FlahROM")
-<br/><br/>
 Unfortunately, I can't post the flash software here because i'm not the original owner.
