@@ -128,7 +128,7 @@ bytelp:
 rotlp:
 			srl h\ rr l\ rr d\ rra		; rotate crc
 			jr nc,cleaned			; b0 was zero
-			ld e,a							; put crc low byte back into e
+			ld e,a				; put crc low byte back into e
 			ld a,h\ xor #ed\ ld h,a		; crc=crc xor &edb88320, zip polynomic
 			ld a,l\ xor #b8\ ld l,a
 			ld a,d\ xor #83\ ld d,a
