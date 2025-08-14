@@ -20,13 +20,11 @@ slotnr equ 1						; Change to 2 for Slot 2
 			ld c,9				; String Output Function
 			call 5				; Call DOS Function
 			
-			; Copy first 32k from ROM to RAM #0000 -> #4000 (Backwards)
+			; Copy first 32k from ROM to RAM #0000 -> #8000 (Backwards)
 			ld hl,#7fff			; Adress to read
 notdone:
-			push bc
 			ld a,slotnr
 			call #0c			; Reads the value of an address in another slot
-			pop bc
 
 			push hl
 			ld a,#40			; Calculate detination adress
