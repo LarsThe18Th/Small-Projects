@@ -12,7 +12,7 @@
     code @ 100h
 
 
-slotnr equ 2						; Change to 1 for Slot 1
+slotnr equ 1						; Change to 2 for Slot 2
 
 
 			di
