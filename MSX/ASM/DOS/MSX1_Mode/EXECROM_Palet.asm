@@ -2,7 +2,7 @@
 
 ; Loads ExecROM Enhanced color Pallette 
 
-	output MSX1pal.com
+	output EXECpal.com
 	
 	defpage 0,100h
 	page 0
