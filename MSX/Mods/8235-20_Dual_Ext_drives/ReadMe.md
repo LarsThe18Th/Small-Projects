@@ -15,13 +15,15 @@ A standard PC drive works for the **B** drive. (A Gotek also can be used for bot
 If you use the External **A:** drive, the Internal **A:** drive can no longer be used, but you can always switch back to the internal **A:** drive if you prefer.  
 In both cases, the **B:** drive can simply remain connected to the external port.<br><br>
 
-It is recommended to update the DiskROM to the 8245 version after that, you can format a double-sided disk using drive **A:**.  
+It is recommended to update the DiskROM to the 8245 version, now you can format a double-sided disk using drive **A:**.  
 The other mod (see photo) for the **Side-Select** and **In-Use** signals are not strictly necessary, this is only intended for the internal **A:** drive.
 
 ![Internal Mod.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Mods/8235-20_Dual_Ext_drives/IternalMod.jpg)
 
 <br>
-You could use a nice 3D printed enclosure with a 5V USB adapter as power supply. (Optionally with an **A: <-> B:** switch).  
+You could use a nice 3D printed enclosure with a 5V USB adapter as power supply. (Optionally with an **A: <-> B:** switch).
+
+<br>
 
 ![3D Case.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Mods/8235-20_Dual_Ext_drives/ExtDrives.jpg)
 
