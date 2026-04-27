@@ -6,7 +6,7 @@
 I managed to get an **A:** and **B:** drive working on the external connection at the back of the MSX **8235/20**.  
 You only need to solder one wire for this. (See photo) *(This feeds the **DiskSelect0** signal to the external connector)*
 
-![Extra Cable.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Joy_MIDI/Joy_MIDI.jpg)
+![Extra Wire.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Mods/8235-20_Dual_Ext_drives/ExtraWire.jpg)
 
 Use a **Straight** flat cable (without twist) with 3 connectors to connect both drives on the MSX.  
 The PC drive that will act as the **A:** drive needs to be to be modified to function as drive A:.  
@@ -17,8 +17,8 @@ In both cases, the **B:** drive can simply remain connected to the external port
 
 It is recommended to update the DiskROM to the 8245 version after that, you can format a double-sided disk using drive **A:**.  
 The other mod (see photo) for the **Side-Select** and **In-Use** signals are not strictly necessary, this is only intended for the internal **A:** drive.  
+![Internal Mod.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Mods/8235-20_Dual_Ext_drives/IternalMod.jpg)
 
+You could then use a nice 3D printed enclosure with a 5V USB adapter for the power supply. (Optionally with an **A: <-> B:** switch).
+![3D Case.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Mods/8235-20_Dual_Ext_drives/ExtDrives.jpg)
 
-You could then use a nice 3D printed enclosure with a 5V USB adapter for the power supply. (Optionally with an **A: <-> B:** switch)  
-
-![Joy_MIDI.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Joy_MIDI/Joy_MIDI.jpg)
