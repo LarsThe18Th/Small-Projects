@@ -12,7 +12,7 @@ Use a **Straight** flat cable (without twist) with 3 connectors to connect both 
 The PC drive that will act as the **A:** drive needs to be to be modified to function as drive A:.  
 A standard PC drive works for the **B** drive. (A Gotek also can be used for both drives)
 
-If you use the external drive as the **A:** drive, the internal drive **A** can no longer be used, but you can always switch back to the internal **A:** drive if you prefer.  
+If you use the External **A:** drive, the Internal **A:** drive can no longer be used, but you can always switch back to the internal **A:** drive if you prefer.  
 In both cases, the **B:** drive can simply remain connected to the external port.
 
 It is recommended to update the DiskROM to the 8245 version after that, you can format a double-sided disk using drive **A:**.  
