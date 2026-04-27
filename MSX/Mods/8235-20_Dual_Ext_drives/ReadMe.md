@@ -8,7 +8,7 @@ You only need to solder one wire for this. (See photo) *(This feeds the **DiskSe
 
 ![Extra Wire.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Mods/8235-20_Dual_Ext_drives/ExtraWire.jpg)<br><br>
 
-Use a **Straight** flat cable (without twist) with 3 connectors to connect both drives on the MSX.  
+Use a **Straight** flatcable (without twist) with 3 connectors to connect both drives on the External connector of the 8235/20.  
 The PC drive that will act as the **A:** drive needs to be to be modified to function as drive A:.  
 A standard PC drive works for the **B** drive. (A Gotek also can be used for both drives)<br><br>  
 
