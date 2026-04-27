@@ -6,7 +6,7 @@
 I managed to get an **A:** and **B:** drive working on the external connection at the back of the MSX **8235/20**.  
 You only need to solder one wire for this. (See photo) *(This feeds the **DiskSelect0** signal to the external connector)*
 
-![Joy_MIDI.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Joy_MIDI/Joy_MIDI.jpg)
+![Extra Cable.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Hardware/Joy_MIDI/Joy_MIDI.jpg)
 
 Use a **Straight** flat cable (without twist) with 3 connectors to connect both drives on the MSX.  
 The PC drive that will act as the **A:** drive needs to be to be modified to function as drive A:.  
