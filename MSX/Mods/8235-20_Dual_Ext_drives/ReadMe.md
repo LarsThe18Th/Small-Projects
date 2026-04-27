@@ -6,9 +6,8 @@
 I managed to get an **A:** and **B:** drive working on the external connection at the back of the MSX **8235/20**.  
 You only need to solder one wire for this. (See photo) *(This feeds the **DiskSelect0** signal to the external connector)*
 
-![Extra Wire.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Mods/8235-20_Dual_Ext_drives/ExtraWire.jpg)
+![Extra Wire.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Mods/8235-20_Dual_Ext_drives/ExtraWire.jpg)<br><br>
 
-<br>
 Use a **Straight** flat cable (without twist) with 3 connectors to connect both drives on the MSX.  
 The PC drive that will act as the **A:** drive needs to be to be modified to function as drive A:.  
 A standard PC drive works for the **B** drive. (A Gotek also can be used for both drives)<br><br>  
