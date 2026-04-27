@@ -19,6 +19,6 @@ It is recommended to update the DiskROM to the 8245 version after that, you can 
 The other mod (see photo) for the **Side-Select** and **In-Use** signals are not strictly necessary, this is only intended for the internal **A:** drive.  
 ![Internal Mod.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Mods/8235-20_Dual_Ext_drives/IternalMod.jpg)
 
-You could then use a nice 3D printed enclosure with a 5V USB adapter for the power supply. (Optionally with an **A: <-> B:** switch).
+You could use a nice 3D printed enclosure with a 5V USB adapter as power supply. (Optionally with an **A: <-> B:** switch).
 ![3D Case.](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/Mods/8235-20_Dual_Ext_drives/ExtDrives.jpg)
 
