@@ -13,7 +13,7 @@ It is possible to switch, or better **Swap** drive **A:** and **B:** in a 8250 M
   ## Pinout with Flash Floppy Firmware
 
 **J5** -  
-**JA** -  
+**JA** - Extra Switch  
 **JC** -  
 **JB** - Speaker  
 **S0** - Drive A  
