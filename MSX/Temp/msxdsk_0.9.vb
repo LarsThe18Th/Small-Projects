@@ -65,7 +65,6 @@ Module Program
             Console.WriteLine("Kritieke fout: " & ex.Message)
         End Try
     End Sub
-
     Sub ToonHelp()
         Console.WriteLine("=== MSX DSK CLI Tool Pro v2 ===")
         Console.WriteLine("Gebruik:")
@@ -133,6 +132,7 @@ Module Program
             VoegBestandToe(dskPad, pcInput, msxDoelPad, attr)
         End If
     End Sub
+
     Sub VoegBestandToe(dskPad As String, pcBestandPad As String, msxDoelPad As String, attribuut As Byte)
         If Not File.Exists(pcBestandPad) Then
             Console.WriteLine("Fout: Lokaal pc-bestand bestaat niet: " & pcBestandPad)
@@ -181,6 +181,7 @@ Module Program
                 Return
             End If
             
+            ' FIX: Claim de cluster DIRECT tijdelijk in de FAT zodat deze niet dubbel wordt uitgegeven!
             SchrijfFatEntry(dsk, vrijeCluster, &HFFF)
             
             If c = 0 Then eersteCluster = vrijeCluster
@@ -457,14 +458,14 @@ Module Program
 
     Sub MaakDsk(pad As String, formaat As String)
         Dim totaalSectors As Integer = 1440 
-        Dim sectorsPerCluster As Byte = 2 ' Altijd 2 voor MSX (1024 bytes per cluster!)
+        Dim sectorsPerCluster As Byte = 2 
         Dim fatSectors As Byte = 3
         Dim mediaId As Byte = &HF9
         Dim aantalKoppen As Byte = 2
         
         If formaat = "360k" Then 
             totaalSectors = 720 
-            sectorsPerCluster = 2 ' FIX: Moet OOK 2 zijn voor MSX-DOS 360K!
+            sectorsPerCluster = 1 
             fatSectors = 2 
             mediaId = &HF8 
             aantalKoppen = 1
@@ -477,7 +478,7 @@ Module Program
         Encoding.ASCII.GetBytes("MSX-DOS ").CopyTo(data, 3)
         
         data(11) = 0 : data(12) = 2                   ' Bytes per sector (512)
-        data(13) = sectorsPerCluster                  ' Adres 0x0D: Nu gegarandeerd 2!
+        data(13) = sectorsPerCluster                  ' Adres 0x0D: Sectors per cluster
         data(14) = 1 : data(15) = 0                   ' Gereserveerde sectors (1)
         data(16) = 2                                  ' Aantal FATs (2)
         
@@ -494,7 +495,7 @@ Module Program
         data(26) = aantalKoppen                       ' Adres 0x1A: Aantal magneetkoppen (1 of 2)
         data(27) = 0                                  ' Adres 0x1B: Gereserveerde hidden sectors
         
-        ' Exacte MSX-DOS Boot Routine vanaf adres 0x1E
+        ' Officiële MSX-DOS Boot Routine vanaf adres 0x1E
         Dim bootCode() As Byte = {
             &HD0, &HED, &H53, &H59, &HC0, &H32, &HD0, &HC0, &H36, &H56, &H23, &H36, &HC0, &H31, &H1F, &HF5,
             &H11, &HAB, &HC0, &H0E, &H0F, &HCD, &H7D, &HF3, &H3C, &HCA, &H63, &HC0, &H11, &H00, &H01, &H0E,
@@ -634,14 +635,14 @@ Module Program
                     End If
                 Next
 
-                If hCluster = 0 Then Exit Loop
+                If hCluster = 0 Then Exit While
                 hCluster = LeesFatEntry(dsk, hCluster)
                 If hCluster >= &HFF8 Then Exit While
             End While
 
             If Not gevonden Then
                 If d = delen.Length - 1 Then
-                    uitParentCluster = huidigeCluster
+                    uitParentCluster = AdministrativeCluster(huidigeCluster)
                     Return 0
                 Else
                     Throw New Exception("Pad-onderdeel '" & deel & "' niet gevonden.")
@@ -649,6 +650,10 @@ Module Program
             End If
         Next
         Return huidigeCluster
+    End Function
+
+    Function AdministrativeCluster(clus As UShort) As UShort
+        Return clus
     End Function
 
     Sub BeheerDiskNaam(pad As String, nieuweNaam As String)
@@ -663,8 +668,9 @@ Module Program
             Dim geformatteerdeNaam As String = nieuweNaam.PadRight(8, " "c)
             If geformatteerdeNaam.Length > 8 Then geformatteerdeNaam = geformatteerdeNaam.Substring(0, 8)
             Encoding.ASCII.GetBytes(geformatteerdeNaam).CopyTo(dsk, 3)
-            File.WriteAllBytes(pad, dsk, False)
+            File.WriteAllBytes(pad, dsk)
             Console.WriteLine("Disknaam succesvol gewijzigd naar: '" & geformatteerdeNaam & "'")
         End If
     End Sub
 End Module
+
