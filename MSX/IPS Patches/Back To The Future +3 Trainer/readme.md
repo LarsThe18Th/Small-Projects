@@ -16,4 +16,4 @@ therefore i have included the BTTF.tcl script for OpenMSX to do the keypress for
 
 
 **The game hints this feature in Level 2**  
-![alt text](https://github.com/Bagster/Projects/blob/master/MSX/IPS%20Patches/Back%20To%20The%20Future%20%2B3%20Trainer/BTTF.jpg "Ghost Splash Screen")
+![alt text](https://raw.githubusercontent.com/LarsThe18Th/Small-Projects/refs/heads/master/MSX/IPS%20Patches/Back%20To%20The%20Future%20%2B3%20Trainer/BTTF.jpg "Ghost Splash Screen")
