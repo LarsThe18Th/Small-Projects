@@ -2,10 +2,11 @@
 Here you can find the following small projects
 
 - MSX
-  - ASM Small Assembler MSX Projects
-  - Hardware MSX Projects
-  - IPS Patches to Fix bugs in some MSX games
+  - [ASM] Small Assembler MSX Projects
+  - [Hardware] MSX Hardware Projects
+  - [IPS] Patches to Fix bugs in some MSX games
+  - [Mods] MSX Computer Mods
 
 - PC
-  - ASM A splashscreen in Assembler for MS-DOS
-  - WINDOWS Some Password Generators for Windows
+  - [ASM] A splashscreen in Assembler for MS-DOS
+  - [WINDOWS] Some Password Generators for Windows
